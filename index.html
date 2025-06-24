@@ -4,181 +4,466 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joao Francisco da Silva - Engenheiro de Software</title>
+    <title>Joao Francisco da Silva - Engenheiro de Software Full Stack</title>
     <link rel="icon" type="image/png" href="src/assets/icons/logotipo.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-neutral-900 text-white font-sans">
-    <!-- Header -->
-    <header class="fixed top-0 w-full bg-neutral-800 shadow-lg z-10">
+    <header class="fixed top-0 w-full bg-neutral-800/95 backdrop-blur-sm shadow-lg z-50">
         <nav class="container mx-auto p-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold">Joao FSDev</h1>
-            <ul class="flex space-x-6">
-                <li><a href="#sobre" class="hover:text-orange-500 transition">Sobre</a></li>
-                <li><a href="#habilidades" class="hover:text-orange-500 transition">Habilidades</a></li>
-                <li><a href="#projetos" class="hover:text-orange-500 transition">Projetos</a></li>
-                <li><a href="#contato" class="hover:text-orange-500 transition">Contato</a></li>
+            <h1 class="text-2xl font-bold text-orange-500">Joao FSDev</h1>
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#sobre" class="hover:text-orange-500 transition-colors duration-300">Sobre</a></li>
+                <li><a href="#habilidades" class="hover:text-orange-500 transition-colors duration-300">Habilidades</a></li>
+                <li><a href="#experiencia" class="hover:text-orange-500 transition-colors duration-300">Experiência</a></li>
+                <li><a href="#projetos" class="hover:text-orange-500 transition-colors duration-300">Projetos</a></li>
+                <li><a href="#contato" class="hover:text-orange-500 transition-colors duration-300">Contato</a></li>
             </ul>
+            <button id="mobile-menu-btn" class="md:hidden text-white">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
         </nav>
+        <div id="mobile-menu" class="md:hidden hidden bg-neutral-800 border-t border-neutral-700">
+            <ul class="flex flex-col space-y-4 p-4">
+                <li><a href="#sobre" class="block hover:text-orange-500 transition-colors duration-300">Sobre</a></li>
+                <li><a href="#habilidades" class="block hover:text-orange-500 transition-colors duration-300">Habilidades</a></li>
+                <li><a href="#experiencia" class="block hover:text-orange-500 transition-colors duration-300">Experiência</a></li>
+                <li><a href="#projetos" class="block hover:text-orange-500 transition-colors duration-300">Projetos</a></li>
+                <li><a href="#contato" class="block hover:text-orange-500 transition-colors duration-300">Contato</a></li>
+            </ul>
+        </div>
     </header>
 
-    <!-- Seção Sobre -->
-    <section id="sobre" class="min-h-screen flex items-center justify-center py-20">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold mb-4">Engenheiro de Software<br>Mais que código — construção de futuro.</h2>
-            <p class="text-lg max-w-2xl mx-auto">
-                Olá! Sou Joao Francisco, um Engenheiro de Software Full Stack apaixonado por criar soluções modernas e
-                eficientes.
-            </p>
-            <br>
-            <a href="src/assets/docs/curriculo2025_joaofullstack.pdf" target="_blank" class="text-white font-semibold py-2 px-4 border rounded-full hover:bg-white hover:text-black transition duration-500">Baixar CV</a>
-            <a href="#contato" class="text-black bg-white font-semibold py-2 px-4 border rounded-full hover:bg-black hover:text-white transition duration-500">Entre em Contato</a>
-        </div>
-    </section>
-
-    <!-- Seção Habilidades -->
-    <section id="habilidades" class="min-h-screen flex items-center justify-center py-20">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold mb-12">Habilidades</h2>
-            <div class="grid grid-cols-5 gap-10 max-w-lg mx-auto">
-                <div class="hover:cursor-pointer transition duration-300 hover:scale-110 group">
-                    <img src="src/assets/icons/html5.svg" alt="HTML5">
-                    <span class="opacity-0 transition duration-300 group-hover:opacity-100">HTML</span>
-                </div>
-                <div class="hover:cursor-pointer transition duration-300 hover:scale-110 group">
-                    <img src="src/assets/icons/css3.svg" alt="CSS3">
-                    <span class="opacity-0 transition duration-300 group-hover:opacity-100">CSS</span>
-                </div>
-                <div class="hover:cursor-pointer transition duration-300 hover:scale-110 group">
-                    <img src="src/assets/icons/js.svg" alt="Javascript">
-                    <span class="opacity-0 transition duration-300 group-hover:opacity-100">Javascript</span>
-                </div>
-                <div class="hover:cursor-pointer transition duration-300 hover:scale-110 group">
-                    <img src="src/assets/icons/nodejs.svg" alt="Nodejs">
-                    <span class="opacity-0 transition duration-300 group-hover:opacity-100">Node.js</span>
-                </div>
-                <div class="hover:cursor-pointer transition duration-300 hover:scale-110 group">
-                    <img src="src/assets/icons/tailwindcss.svg" alt="TailwindCSS">
-                    <span class="opacity-0 transition duration-300 group-hover:opacity-100">TailwindCSS</span>
-                </div>
-                <div class="hover:cursor-pointer transition duration-300 hover:scale-110 group">
-                    <img src="src/assets/icons/git.svg" alt="GIT">
-                    <span class="opacity-0 transition duration-300 group-hover:opacity-100">Git</span>
-                </div>
-                <div class="hover:cursor-pointer transition duration-300 hover:scale-110 group">
-                    <img src="src/assets/icons/github.svg" alt="Github">
-                    <span class="opacity-0 transition duration-300 group-hover:opacity-100">Github</span>
-                </div>
-                <div class="hover:cursor-pointer transition duration-300 hover:scale-110 group">
-                    <img src="src/assets/icons/mysql.svg" alt="MySQL">
-                    <span class="opacity-0 transition duration-300 group-hover:opacity-100">MySQL</span>
-                </div>
-                <div class="hover:cursor-pointer transition duration-300 hover:scale-110 group">
-                    <img src="src/assets/icons/figma.svg" alt="Figma">
-                    <span class="opacity-0 transition duration-300 group-hover:opacity-100">Figma</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projetos" class="min-h-screen bg-neutral-900 py-20">
+    <section id="sobre" class="min-h-screen flex items-center justify-center py-20 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-6">Meus Projetos</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Projeto 1 -->
-                <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-                    <img src="src/assets/thumbs/cornercraft.png" alt="CornerCraft"
-                        class="w-full h-48 object-cover rounded-t-lg mb-4">
-                    <h3 class="text-xl font-semibold mb-2">CornerCraft</h3>
-                    <p class="text-sm mb-4">Uma aplicação web que permite aos usuários acessar e publicar tutoriais de
-                        forma organizada.
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                        <span class="text-white">Olá, eu sou</span><br>
+                        <span class="text-orange-500">Joao Francisco</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl text-gray-300 mb-6">Engenheiro de Software Full Stack</h2>
+                    <p class="text-lg text-gray-400 mb-8 max-w-lg">
+                        Apaixonado por criar soluções inovadoras e experiências digitais excepcionais. 
+                        Especializado em desenvolvimento web moderno e tecnologias emergentes.
                     </p>
-                    <span class="inline-block bg-orange-600 text-white px-3 py-1 rounded-full text-xs mb-4">Frontend</span>
-                    <span class="inline-block bg-orange-600 text-white px-3 py-1 rounded-full text-xs mb-4">Backend</span>
-                    <div class="flex space-x-4">
-                        <a href="https://github.com/joaofsdev/cornercraft" target="_blank"
-                            class="bg-gray-600 hover:bg-gray-500 text-white font-semibold py-2 px-4 rounded transition duration-300">GitHub</a>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="src/assets/docs/curriculo2025_joaofullstack.pdf" target="_blank" 
+                           class="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+                            <i class="fas fa-download mr-2"></i>
+                            Baixar CV
+                        </a>
+                        <a href="#contato" 
+                           class="border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            Entre em Contato
+                        </a>
                     </div>
                 </div>
-                <!-- Projeto 2 -->
-                <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-                    <img src="src/assets/thumbs/todo_app.jpg" alt="Todo APP"
-                        class="w-full h-48 object-cover rounded-t-lg mb-4">
-                    <h3 class="text-xl font-semibold mb-2">Todo APP</h3>
-                    <p class="text-sm mb-4">O Todo App é uma aplicação web prática e moderna para gerenciar tarefas
-                        diárias.
-                    </p>
-                    <span class="inline-block bg-orange-600 text-white px-3 py-1 rounded-full text-xs mb-4">Frontend</span>
-                    <span class="inline-block bg-orange-600 text-white px-3 py-1 rounded-full text-xs mb-4">Backend</span>
-                    <div class="flex space-x-4">
-                        <a href="https://github.com/joaofsdev/todo_app" target="_blank"
-                            class="bg-gray-600 hover:bg-gray-500 text-white font-semibold py-2 px-4 rounded transition duration-300">GitHub</a>
-                    </div>
-                </div>
-                <!-- Projeto 3 -->
-                <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-                    <img src="src/assets/thumbs/citysave.png" alt="CitySave"
-                        class="w-full h-48 object-cover rounded-t-lg mb-4">
-                    <h3 class="text-xl font-semibold mb-2">City Save</h3>
-                    <p class="text-sm mb-4">O CitySave é uma aplicação web prática e moderna para comparar custos
-                        de vida entre cidades.
-                    </p>
-                    <span class="inline-block bg-orange-600 text-white px-3 py-1 rounded-full text-xs mb-4">Frontend</span>
-                    <span class="inline-block bg-orange-600 text-white px-3 py-1 rounded-full text-xs mb-4">Backend</span>
-                    <div class="flex space-x-4">
-                        <a href="https://github.com/joaofsdev/citysave" target="_blank"
-                            class="bg-gray-600 hover:bg-gray-500 text-white font-semibold py-2 px-4 rounded transition duration-300">GitHub</a>
+                <div class="flex justify-center md:justify-end">
+                    <div class="relative">
+                        <div class="w-80 h-80 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 p-1">
+                            <div class="w-full h-full rounded-full bg-neutral-900 flex items-center justify-center">
+                                <img src="src/assets/icons/perfil.jpeg" alt="Joao Francisco" 
+                                     class="w-72 h-72 rounded-full object-cover">
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-orange-500 rounded-full flex items-center justify-center animate-pulse">
+                            <i class="fas fa-code text-2xl text-white"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção Contato -->
-    <section id="contato" class="min-h-screen bg-neutral-900 py-20">
+    <section class="py-20 bg-neutral-800">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12">Contato</h2>
-            <form id="contactForm" class="max-w-lg mx-auto space-y-4">
-                <div>
-                    <label for="name" class="block text-sm font-medium">Nome</label>
-                    <input type="text" id="name"
-                        class="w-full p-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-400">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-8">Sobre Mim</h2>
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-orange-500">Quem sou eu?</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Sou um Engenheiro de Software Full Stack apaixonado por tecnologia e inovação. 
+                            Com experiência em desenvolvimento web moderno, busco sempre aprender novas 
+                            tecnologias e metodologias para criar soluções cada vez mais eficientes e 
+                            impactantes.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-orange-500">Minha missão</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Transformar ideias em realidade através do código, criando aplicações que 
+                            resolvem problemas reais e melhoram a vida das pessoas. Acredito no poder 
+                            da tecnologia para mudar o mundo de forma positiva.
+                        </p>
+                    </div>
                 </div>
-                <div>
-                    <label for="email" class="block text-sm font-medium">E-mail</label>
-                    <input type="email" id="email"
-                        class="w-full p-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-400">
-                </div>
-                <div>
-                    <label for="subject" class="block text-sm font-medium">Assunto</label>
-                    <input type="text" id="subject"
-                        class="w-full p-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-400">
-                </div>
-                <div>
-                    <label for="message" class="block text-sm font-medium">Mensagem</label>
-                    <textarea id="message" rows="4"
-                        class="w-full p-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-400"></textarea>
-                </div>
-                <button type="submit"
-                    class="w-full bg-orange-600 hover:bg-orange-900 text-white font-bold py-2 px-4 rounded transition duration-300">
-                    Enviar
-                </button>
-            </form>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-neutral-800 py-4">
-        <div class="container mx-auto px-4 flex flex-col items-center space-y-4">
-            <p class="text-sm text-gray-400">© 2025 Joao Francisco da Silva. Todos Direitos Reservados.</p>
-            <a href="#sobre"
-                class="bg-orange-600 hover:bg-orange-900 text-white font-semibold py-2 px-4 rounded-full transition duration-300">
-                Voltar ao Topo
-            </a>
+    <section id="habilidades" class="py-20 bg-neutral-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16">Habilidades & Tecnologias</h2>
+            
+            <div class="mb-12">
+                <h3 class="text-2xl font-semibold mb-8 text-center text-orange-500">Frontend</h3>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-8 max-w-4xl mx-auto">
+                    <div class="group text-center flex justify-center">
+                        <div class="bg-neutral-800 p-6 rounded-lg hover:bg-neutral-700 transition-all duration-300 transform hover:scale-110 min-h-[180px] w-full max-w-[220px] flex flex-col items-center justify-center">
+                            <img src="src/assets/icons/html5.svg" alt="HTML5" class="w-16 h-16 mx-auto mb-4">
+                            <h4 class="font-semibold text-white">HTML5</h4>
+                            <p class="text-sm text-gray-400 mt-2">Estruturação semântica</p>
+                        </div>
+                    </div>
+                    <div class="group text-center flex justify-center">
+                        <div class="bg-neutral-800 p-6 rounded-lg hover:bg-neutral-700 transition-all duration-300 transform hover:scale-110 min-h-[180px] w-full max-w-[220px] flex flex-col items-center justify-center">
+                            <img src="src/assets/icons/css3.svg" alt="CSS3" class="w-16 h-16 mx-auto mb-4">
+                            <h4 class="font-semibold text-white">CSS3</h4>
+                            <p class="text-sm text-gray-400 mt-2">Estilização avançada</p>
+                        </div>
+                    </div>
+                    <div class="group text-center flex justify-center">
+                        <div class="bg-neutral-800 p-6 rounded-lg hover:bg-neutral-700 transition-all duration-300 transform hover:scale-110 min-h-[180px] w-full max-w-[220px] flex flex-col items-center justify-center">
+                            <img src="src/assets/icons/js.svg" alt="JavaScript" class="w-16 h-16 mx-auto mb-4">
+                            <h4 class="font-semibold text-white">JavaScript</h4>
+                            <p class="text-sm text-gray-400 mt-2">Interatividade</p>
+                        </div>
+                    </div>
+                    <div class="group text-center flex justify-center">
+                        <div class="bg-neutral-800 p-6 rounded-lg hover:bg-neutral-700 transition-all duration-300 transform hover:scale-110 min-h-[180px] w-full max-w-[220px] flex flex-col items-center justify-center">
+                            <img src="src/assets/icons/tailwindcss.svg" alt="TailwindCSS" class="w-16 h-16 mx-auto mb-4">
+                            <h4 class="font-semibold text-white">TailwindCSS</h4>
+                            <p class="text-sm text-gray-400 mt-2">Framework CSS</p>
+                        </div>
+                    </div>
+                    <div class="group text-center flex justify-center">
+                        <div class="bg-neutral-800 p-6 rounded-lg hover:bg-neutral-700 transition-all duration-300 transform hover:scale-110 min-h-[180px] w-full max-w-[220px] flex flex-col items-center justify-center">
+                            <img src="src/assets/icons/figma.svg" alt="Figma" class="w-16 h-16 mx-auto mb-4">
+                            <h4 class="font-semibold text-white">Figma</h4>
+                            <p class="text-sm text-gray-400 mt-2">Design UI/UX</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-12">
+                <h3 class="text-2xl font-semibold mb-8 text-center text-orange-500">Backend</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+                    <div class="group text-center flex justify-center">
+                        <div class="bg-neutral-800 p-6 rounded-lg hover:bg-neutral-700 transition-all duration-300 transform hover:scale-110 min-h-[180px] w-full max-w-[220px] flex flex-col items-center justify-center">
+                            <img src="src/assets/icons/nodejs.svg" alt="Node.js" class="w-16 h-16 mx-auto mb-4">
+                            <h4 class="font-semibold text-white">Node.js</h4>
+                            <p class="text-sm text-gray-400 mt-2">Runtime JavaScript</p>
+                        </div>
+                    </div>
+                    <div class="group text-center flex justify-center">
+                        <div class="bg-neutral-800 p-6 rounded-lg hover:bg-neutral-700 transition-all duration-300 transform hover:scale-110 min-h-[180px] w-full max-w-[220px] flex flex-col items-center justify-center">
+                            <img src="src/assets/icons/mysql.svg" alt="MySQL" class="w-16 h-16 mx-auto mb-4">
+                            <h4 class="font-semibold text-white">MySQL</h4>
+                            <p class="text-sm text-gray-400 mt-2">Banco de dados</p>
+                        </div>
+                    </div>
+                    <div class="group text-center flex justify-center">
+                        <div class="bg-neutral-800 p-6 rounded-lg hover:bg-neutral-700 transition-all duration-300 transform hover:scale-110 min-h-[180px] w-full max-w-[220px] flex flex-col items-center justify-center">
+                            <i class="fas fa-server text-6xl text-orange-500 mx-auto mb-4"></i>
+                            <h4 class="font-semibold text-white">APIs REST</h4>
+                            <p class="text-sm text-gray-400 mt-2">Desenvolvimento de APIs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold mb-8 text-center text-orange-500">Ferramentas & Controle de Versão</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
+                    <div class="group text-center flex justify-center">
+                        <div class="bg-neutral-800 p-6 rounded-lg hover:bg-neutral-700 transition-all duration-300 transform hover:scale-110 min-h-[180px] w-full max-w-[220px] flex flex-col items-center justify-center">
+                            <img src="src/assets/icons/git.svg" alt="Git" class="w-16 h-16 mx-auto mb-4">
+                            <h4 class="font-semibold text-white">Git</h4>
+                        </div>
+                    </div>
+                    <div class="group text-center flex justify-center">
+                        <div class="bg-neutral-800 p-6 rounded-lg hover:bg-neutral-700 transition-all duration-300 transform hover:scale-110 min-h-[180px] w-full max-w-[220px] flex flex-col items-center justify-center">
+                            <img src="src/assets/icons/github.svg" alt="GitHub" class="w-16 h-16 mx-auto mb-4">
+                            <h4 class="font-semibold text-white">GitHub</h4>
+                        </div>
+                    </div>
+                    <div class="group text-center flex justify-center">
+                        <div class="bg-neutral-800 p-6 rounded-lg hover:bg-neutral-700 transition-all duration-300 transform hover:scale-110 min-h-[180px] w-full max-w-[220px] flex flex-col items-center justify-center">
+                            <i class="fas fa-terminal text-6xl text-orange-500 mx-auto mb-4"></i>
+                            <h4 class="font-semibold text-white">Terminal</h4>
+                        </div>
+                    </div>
+                    <div class="group text-center flex justify-center">
+                        <div class="bg-neutral-800 p-6 rounded-lg hover:bg-neutral-700 transition-all duration-300 transform hover:scale-110 min-h-[180px] w-full max-w-[220px] flex flex-col items-center justify-center">
+                            <i class="fas fa-code-branch text-6xl text-orange-500 mx-auto mb-4"></i>
+                            <h4 class="font-semibold text-white">VS Code</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiencia" class="py-20 bg-neutral-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16">Experiência</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-8">
+                    <div class="bg-neutral-900 p-8 rounded-lg border-l-4 border-orange-500">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-semibold text-orange-500">Desenvolvedor Full Stack</h3>
+                                <p class="text-gray-400">Freelancer</p>
+                            </div>
+                            <span class="text-sm text-gray-500 mt-2 md:mt-0">2024 - Presente</span>
+                        </div>
+                        <p class="text-gray-300 leading-relaxed">
+                            Desenvolvimento de aplicações web completas, desde o frontend até o backend. 
+                            Criação de APIs REST, integração com bancos de dados e implementação de 
+                            funcionalidades complexas para clientes diversos.
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">JavaScript</span>
+                            <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">Node.js</span>
+                            <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">MySQL</span>
+                            <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">HTML/CSS</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-neutral-900 p-8 rounded-lg border-l-4 border-orange-500">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-semibold text-orange-500">Projetos Pessoais</h3>
+                                <p class="text-gray-400">Portfolio de Desenvolvimento</p>
+                            </div>
+                            <span class="text-sm text-gray-500 mt-2 md:mt-0">2023 - Presente</span>
+                        </div>
+                        <p class="text-gray-300 leading-relaxed">
+                            Desenvolvimento de projetos pessoais para aprimorar habilidades técnicas e 
+                            criar um portfolio diversificado. Foco em tecnologias modernas e boas práticas 
+                            de desenvolvimento.
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">Full Stack</span>
+                            <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">Web Apps</span>
+                            <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">APIs</span>
+                            <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">UI/UX</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos" class="py-20 bg-neutral-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16">Meus Projetos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-neutral-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <div class="relative">
+                        <img src="src/assets/thumbs/cornercraft.png" alt="CornerCraft"
+                            class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Full Stack</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-orange-500">CornerCraft</h3>
+                        <p class="text-gray-300 mb-4 leading-relaxed">
+                            Uma aplicação web completa que permite aos usuários acessar e publicar tutoriais 
+                            de forma organizada e intuitiva. Sistema de autenticação e gerenciamento de conteúdo.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-neutral-700 text-white px-2 py-1 rounded text-xs">JavaScript</span>
+                            <span class="bg-neutral-700 text-white px-2 py-1 rounded text-xs">Node.js</span>
+                            <span class="bg-neutral-700 text-white px-2 py-1 rounded text-xs">MySQL</span>
+                            <span class="bg-neutral-700 text-white px-2 py-1 rounded text-xs">HTML/CSS</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://github.com/joaofsdev/cornercraft" target="_blank"
+                                class="flex-1 bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded transition duration-300 text-center">
+                                <i class="fab fa-github mr-2"></i>GitHub
+                            </a>
+                            <a href="#" target="_blank"
+                                class="flex-1 bg-neutral-700 hover:bg-neutral-600 text-white font-semibold py-2 px-4 rounded transition duration-300 text-center">
+                                <i class="fas fa-external-link-alt mr-2"></i>Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-neutral-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <div class="relative">
+                        <img src="src/assets/thumbs/todo_app.jpg" alt="Todo APP"
+                            class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Full Stack</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-orange-500">Todo APP</h3>
+                        <p class="text-gray-300 mb-4 leading-relaxed">
+                            Aplicação web moderna para gerenciamento de tarefas diárias. Interface intuitiva 
+                            com funcionalidades de criação, edição e exclusão de tarefas.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-neutral-700 text-white px-2 py-1 rounded text-xs">JavaScript</span>
+                            <span class="bg-neutral-700 text-white px-2 py-1 rounded text-xs">Node.js</span>
+                            <span class="bg-neutral-700 text-white px-2 py-1 rounded text-xs">MySQL</span>
+                            <span class="bg-neutral-700 text-white px-2 py-1 rounded text-xs">TailwindCSS</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://github.com/joaofsdev/todo_app" target="_blank"
+                                class="flex-1 bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded transition duration-300 text-center">
+                                <i class="fab fa-github mr-2"></i>GitHub
+                            </a>
+                            <button disabled
+                                class="flex-1 bg-neutral-700 text-gray-400 font-semibold py-2 px-4 rounded transition duration-300 text-center cursor-not-allowed opacity-60">
+                                <i class="fas fa-external-link-alt mr-2"></i>Demo Indisponível
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-neutral-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <div class="relative">
+                        <img src="src/assets/thumbs/citysave.png" alt="CitySave"
+                            class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Full Stack</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-orange-500">City Save</h3>
+                        <p class="text-gray-300 mb-4 leading-relaxed">
+                            Aplicação web para comparação de custos de vida entre cidades. Interface moderna 
+                            com dados em tempo real e gráficos interativos.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-neutral-700 text-white px-2 py-1 rounded text-xs">JavaScript</span>
+                            <span class="bg-neutral-700 text-white px-2 py-1 rounded text-xs">Node.js</span>
+                            <span class="bg-neutral-700 text-white px-2 py-1 rounded text-xs">MySQL</span>
+                            <span class="bg-neutral-700 text-white px-2 py-1 rounded text-xs">APIs</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://github.com/joaofsdev/citysave" target="_blank"
+                                class="flex-1 bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded transition duration-300 text-center">
+                                <i class="fab fa-github mr-2"></i>GitHub
+                            </a>
+                            <button disabled
+                                class="flex-1 bg-neutral-700 text-gray-400 font-semibold py-2 px-4 rounded transition duration-300 text-center cursor-not-allowed opacity-60">
+                                <i class="fas fa-external-link-alt mr-2"></i>Demo Indisponível
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-20 bg-neutral-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16">Vamos Conversar!</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-orange-500">Informações de Contato</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Email</h4>
+                                <p class="text-gray-400">joao.franciscos047@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <a href="https://www.linkedin.com/in/joaofsdev/" target="_blank">
+                                <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center hover:bg-orange-800 transition-all duration-300">
+                                    <i class="fab fa-linkedin"></i>
+                                </div>
+                            </a>
+                            <div>
+                                <h4 class="font-semibold">LinkedIn</h4>
+                                <p class="text-gray-400">Joao Francisco da Silva</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <a href="https://github.com/joaofsdev" target="_blank">
+                                <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center hover:bg-orange-800 transition-all duration-300">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                            </a>
+                            <div>
+                                <h4 class="font-semibold">GitHub</h4>
+                                <p class="text-gray-400">@joaofsdev</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-2">Nome</label>
+                            <input type="text" id="name" required
+                                class="w-full p-3 rounded-lg bg-neutral-700 text-white border border-neutral-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-2">E-mail</label>
+                            <input type="email" id="email" required
+                                class="w-full p-3 rounded-lg bg-neutral-700 text-white border border-neutral-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium mb-2">Assunto</label>
+                            <input type="text" id="subject" required
+                                class="w-full p-3 rounded-lg bg-neutral-700 text-white border border-neutral-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium mb-2">Mensagem</label>
+                            <textarea id="message" rows="4" required
+                                class="w-full p-3 rounded-lg bg-neutral-700 text-white border border-neutral-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 resize-none"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-neutral-900 py-8 border-t border-neutral-700">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <p class="text-gray-400">© 2025 Joao Francisco da Silva. Todos os direitos reservados.</p>
+                <div class="flex space-x-6">
+                    <a href="https://www.linkedin.com/in/joaofsdev/" target="_blank" class="text-gray-400 hover:text-orange-500 transition-colors duration-300">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://github.com/joaofsdev" target="_blank" class="text-gray-400 hover:text-orange-500 transition-colors duration-300">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://www.instagram.com/joaofsl_/" target="_blank" class="text-gray-400 hover:text-orange-500 transition-colors duration-300">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-orange-600 hover:bg-orange-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="/src/js/main.js"></script>
 </body>
