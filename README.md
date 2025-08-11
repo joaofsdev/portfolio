@@ -20,7 +20,6 @@
 - [✨ Funcionalidades](#-funcionalidades)
 - [🛠️ Stack Tecnológica](#️-stack-tecnológica)
 - [📁 Estrutura do Projeto](#-estrutura-do-projeto)
-- [📱 Responsividade](#-responsividade)
 - [🔧 Configurações](#-configurações)
 - [📚 Aprendizados](#-aprendizados)
 
@@ -183,7 +182,7 @@ portfolio/
 |---------|-----------|------------------|
 | `index.html` | Estrutura HTML principal | 468 linhas |
 | `main.js` | Lógica JavaScript | 237 linhas |
-| `README.md` | Documentação | ~200 linhas |
+| `README.md` | Documentação | 353 linhas |
 
 ---
 
