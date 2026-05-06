@@ -1,439 +1,662 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>João Francisco - Engenheiro de Software Backend</title>
-    <link rel="icon" type="image/png" href="src/assets/icons/logotipo.jpg">
+    <link rel="icon" type="image/png" href="src/assets/icons/logotipo.jpg" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
     <style>
-        html { scroll-behavior: smooth; }
-        .gradient-text { background: linear-gradient(135deg, #f97316 0%, #fb923c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .tech-tag { @apply inline-flex items-center gap-2 px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-medium text-slate-300 hover:border-orange-500 transition-colors; }
-        .project-card { @apply bg-slate-900 border border-slate-800 rounded-lg overflow-hidden hover:border-orange-500 transition-all duration-300; }
-        
-        /* Animações fluidas */
-        section.animate-section {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        section.animate-fade-in {
-            animation: smoothFadeIn 0.8s ease-out forwards;
-        }
-        
-        @keyframes smoothFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
-</head>
+      html {
+        scroll-behavior: smooth;
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .tech-tag {
+        @apply inline-flex items-center gap-2 px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-medium text-slate-300 hover:border-orange-500 transition-colors;
+      }
+      .project-card {
+        @apply bg-slate-900 border border-slate-800 rounded-lg overflow-hidden hover:border-orange-500 transition-all duration-300;
+      }
 
-<body class="bg-slate-950 text-slate-100 font-sans antialiased">
+      /* Animações fluidas */
+      section.animate-section {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      section.animate-fade-in {
+        animation: smoothFadeIn 0.8s ease-out forwards;
+      }
+
+      @keyframes smoothFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-slate-950 text-slate-100 font-sans antialiased">
     <!-- Header -->
-    <header class="fixed top-0 w-full bg-slate-950/80 backdrop-blur-sm border-b border-slate-800 z-50">
-        <nav class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-orange-400">JoaoFS Dev</a>
-            <ul class="hidden md:flex gap-8 text-sm text-slate-400">
-                <li><a href="#sobre" class="hover:text-orange-400 transition-colors">Sobre</a></li>
-                <li><a href="#stack" class="hover:text-orange-400 transition-colors">Stack</a></li>
-                <li><a href="#projetos" class="hover:text-orange-400 transition-colors">Projetos</a></li>
-                <li><a href="#contato" class="hover:text-orange-400 transition-colors">Contato</a></li>
-            </ul>
-            <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-orange-400">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
-        </nav>
-        <div id="mobile-menu" class="md:hidden hidden bg-slate-900 border-t border-slate-800">
-            <ul class="flex flex-col gap-3 p-4 text-sm text-slate-400">
-                <li><a href="#sobre" class="block hover:text-orange-400">Sobre</a></li>
-                <li><a href="#stack" class="block hover:text-orange-400">Stack</a></li>
-                <li><a href="#projetos" class="block hover:text-orange-400">Projetos</a></li>
-                <li><a href="#contato" class="block hover:text-orange-400">Contato</a></li>
-            </ul>
-        </div>
+    <header
+      class="fixed top-0 w-full bg-slate-950/80 backdrop-blur-sm border-b border-slate-800 z-50"
+    >
+      <nav
+        class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a href="#" class="text-xl font-bold text-orange-400">JoaoFS Dev</a>
+        <ul class="hidden md:flex gap-8 text-sm text-slate-400">
+          <li>
+            <a href="#sobre" class="hover:text-orange-400 transition-colors"
+              >Sobre</a
+            >
+          </li>
+          <li>
+            <a href="#stack" class="hover:text-orange-400 transition-colors"
+              >Stack</a
+            >
+          </li>
+          <li>
+            <a href="#projetos" class="hover:text-orange-400 transition-colors"
+              >Projetos</a
+            >
+          </li>
+          <li>
+            <a href="#contato" class="hover:text-orange-400 transition-colors"
+              >Contato</a
+            >
+          </li>
+        </ul>
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden text-slate-400 hover:text-orange-400"
+        >
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </nav>
+      <div
+        id="mobile-menu"
+        class="md:hidden hidden bg-slate-900 border-t border-slate-800"
+      >
+        <ul class="flex flex-col gap-3 p-4 text-sm text-slate-400">
+          <li>
+            <a href="#sobre" class="block hover:text-orange-400">Sobre</a>
+          </li>
+          <li>
+            <a href="#stack" class="block hover:text-orange-400">Stack</a>
+          </li>
+          <li>
+            <a href="#projetos" class="block hover:text-orange-400">Projetos</a>
+          </li>
+          <li>
+            <a href="#contato" class="block hover:text-orange-400">Contato</a>
+          </li>
+        </ul>
+      </div>
     </header>
 
     <!-- Hero Section -->
     <section id="sobre" class="pt-32 pb-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <div class="mb-6">
-                        <span class="inline-block px-3 py-1 bg-orange-500/10 border border-orange-500/30 rounded-full text-sm text-orange-400 font-medium">Engenheiro de Software Backend</span>
-                    </div>
-                    <h1 class="text-4xl md:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
-                        João <span class="gradient-text">Francisco</span>
-                    </h1>
-                    <p class="text-lg text-slate-400 mb-8 leading-relaxed max-w-lg">
-                        Construindo APIs robustas e aplicações escaláveis. Especializado em arquitetura backend, 
-                        spring boot e banco de dados. Transformando ideias em soluções elegantes através de código limpo.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="src/assets/docs/curriculo2025_joaofullstack.pdf" target="_blank" 
-                           class="px-6 py-3 bg-orange-600 hover:bg-orange-700 rounded-lg font-medium transition-colors inline-flex items-center justify-center gap-2">
-                            <i class="fas fa-download"></i> Download CV
-                        </a>
-                        <a href="#contato" 
-                           class="px-6 py-3 border border-orange-500 text-orange-400 hover:bg-orange-500/10 rounded-lg font-medium transition-colors inline-flex items-center justify-center gap-2">
-                            <i class="fas fa-envelope"></i> Entre em Contato
-                        </a>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <div class="relative">
-                        <div class="w-56 h-56 md:w-72 md:h-72 rounded-2xl bg-gradient-to-br from-orange-500/20 to-slate-900 border border-orange-500/30 overflow-hidden">
-                            <img src="src/assets/icons/perfil.jpeg" alt="João Francisco" 
-                                 class="w-full h-full object-cover">
-                        </div>
-                        <div class="absolute -bottom-4 -right-4 px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg text-sm text-slate-400">
-                            <i class="fas fa-terminal text-orange-400 mr-2"></i> Junior Backend 
-                        </div>
-                    </div>
-                </div>
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <div class="mb-6">
+              <span
+                class="inline-block px-3 py-1 bg-orange-500/10 border border-orange-500/30 rounded-full text-sm text-orange-400 font-medium"
+                >Engenheiro de Software Backend</span
+              >
             </div>
+            <h1
+              class="text-4xl md:text-5xl xl:text-6xl font-bold mb-6 leading-tight"
+            >
+              João <span class="gradient-text">Francisco</span>
+            </h1>
+            <p class="text-lg text-slate-400 mb-8 leading-relaxed max-w-lg">
+              Construindo APIs robustas e aplicações escaláveis. Especializado
+              em arquitetura backend, spring boot e banco de dados.
+              Transformando ideias em soluções elegantes através de código
+              limpo.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                href="src/assets/docs/Joao_Francisco_Silva_Backend_Java.pdf"
+                target="_blank"
+                class="px-6 py-3 bg-orange-600 hover:bg-orange-700 rounded-lg font-medium transition-colors inline-flex items-center justify-center gap-2"
+              >
+                <i class="fas fa-download"></i> Download CV
+              </a>
+              <a
+                href="#contato"
+                class="px-6 py-3 border border-orange-500 text-orange-400 hover:bg-orange-500/10 rounded-lg font-medium transition-colors inline-flex items-center justify-center gap-2"
+              >
+                <i class="fas fa-envelope"></i> Entre em Contato
+              </a>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <div class="relative">
+              <div
+                class="w-56 h-56 md:w-72 md:h-72 rounded-2xl bg-gradient-to-br from-orange-500/20 to-slate-900 border border-orange-500/30 overflow-hidden"
+              >
+                <img
+                  src="src/assets/icons/perfil.jpeg"
+                  alt="João Francisco"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div
+                class="absolute -bottom-4 -right-4 px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg text-sm text-slate-400"
+              >
+                <i class="fas fa-terminal text-orange-400 mr-2"></i> Junior
+                Backend
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Sobre Section -->
     <section class="py-20 px-6 border-t border-slate-800">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold mb-12">Sobre Mim</h2>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-xl font-semibold text-orange-400 mb-4">Quem sou?</h3>
-                    <p class="text-slate-400 leading-relaxed">
-                        Sou um Engenheiro de Software Backend com paixão por resolver problemas complexos 
-                        através de código limpo e eficiente. Tenho foco em construir sistemas escaláveis, 
-                        robustos e bem arquitetados. Aprofundei meus conhecimentos no ecossistema corporativo, 
-                        sempre buscando as melhores práticas do mercado.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-orange-400 mb-4">Formação</h3>
-                    <ul class="text-slate-400 space-y-3">
-                        <li class="flex items-start gap-3">
-                            <span class="text-orange-400 mt-1">→</span>
-                            <span><strong>Engenharia de Software</strong> - Cátolica de SC</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-orange-400 mt-1">→</span>
-                            <span><strong>Técnico em Análise de Sistemas</strong> - SENAI</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-orange-400 mt-1">→</span>
-                            <span>Aprendizado contínuo em arquitetura de software e cloud</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-12">Sobre Mim</h2>
+        <div class="grid md:grid-cols-2 gap-12">
+          <div>
+            <h3 class="text-xl font-semibold text-orange-400 mb-4">
+              Quem sou?
+            </h3>
+            <p class="text-slate-400 leading-relaxed">
+              Sou um Engenheiro de Software Backend com paixão por resolver
+              problemas complexos através de código limpo e eficiente. Tenho
+              foco em construir sistemas escaláveis, robustos e bem
+              arquitetados. Aprofundei meus conhecimentos no ecossistema
+              corporativo, sempre buscando as melhores práticas do mercado.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-orange-400 mb-4">Formação</h3>
+            <ul class="text-slate-400 space-y-3">
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400 mt-1">→</span>
+                <span
+                  ><strong>Engenharia de Software</strong> - Cátolica de
+                  SC</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400 mt-1">→</span>
+                <span
+                  ><strong>Técnico em Análise de Sistemas</strong> - SENAI</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400 mt-1">→</span>
+                <span
+                  >Aprendizado contínuo em arquitetura de software e cloud</span
+                >
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Stack Section -->
-    <section id="stack" class="py-20 px-6 bg-slate-900/50 border-y border-slate-800">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold mb-16">Stack Tecnológico</h2>
-            
-            <!-- Backend -->
-            <div class="mb-16">
-                <h3 class="text-xl font-semibold text-orange-400 mb-6 flex items-center gap-2">
-                    <i class="fas fa-server"></i> Backend & Banco de Dados
-                </h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <div class="tech-tag">
-                        <i class="fab fa-java text-red-500"></i> Java
-                    </div>
-                    <div class="tech-tag">
-                        <i class="fas fa-leaf text-green-500"></i> Spring Boot
-                    </div>
-                    <div class="tech-tag">
-                        <i class="fab fa-node text-green-600"></i> Node.js
-                    </div>
-                    <div class="tech-tag">
-                        <i class="fas fa-cube text-yellow-600"></i> Express
-                    </div>
-                    <div class="tech-tag">
-                        <i class="fas fa-database text-blue-500"></i> PostgreSQL
-                    </div>
-                    <div class="tech-tag">
-                        <i class="fas fa-database text-orange-500"></i> MySQL
-                    </div>
-                    <div class="tech-tag">
-                        <i class="fas fa-cube text-blue-400"></i> REST APIs
-                    </div>
-                    <div class="tech-tag">
-                        <i class="fas fa-code-branch text-purple-500"></i> Microservices
-                    </div>
-                </div>
-            </div>
+    <section
+      id="stack"
+      class="py-20 px-6 bg-slate-900/50 border-y border-slate-800"
+    >
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold mb-16">Stack Tecnológico</h2>
 
-            <!-- Frontend -->
-            <div class="mb-16">
-                <h3 class="text-xl font-semibold text-orange-400 mb-6 flex items-center gap-2">
-                    <i class="fas fa-palette"></i> Frontend & Design
-                </h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <div class="tech-tag">
-                        <i class="fab fa-html5 text-orange-600"></i> HTML5
-                    </div>
-                    <div class="tech-tag">
-                        <i class="fab fa-css3-alt text-blue-600"></i> CSS3
-                    </div>
-                    <div class="tech-tag">
-                        <i class="fab fa-js text-yellow-500"></i> JavaScript
-                    </div>
-                    <div class="tech-tag">
-                        <i class="fas fa-wind"></i> Tailwind
-                    </div>
-                    <div class="tech-tag">
-                        <i class="fas fa-pencil text-pink-500"></i> Figma
-                    </div>
-                </div>
+        <!-- Backend -->
+        <div class="mb-16">
+          <h3
+            class="text-xl font-semibold text-orange-400 mb-6 flex items-center gap-2"
+          >
+            <i class="fas fa-server"></i> Backend & Banco de Dados
+          </h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div class="tech-tag">
+              <i class="fab fa-java text-red-500"></i> Java
             </div>
-
-            <!-- Tools -->
-            <div>
-                <h3 class="text-xl font-semibold text-orange-400 mb-6 flex items-center gap-2">
-                    <i class="fas fa-tools"></i> Ferramentas & Versionamento
-                </h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <div class="tech-tag">
-                        <i class="fab fa-git-alt text-orange-600"></i> Git
-                    </div>
-                    <div class="tech-tag">
-                        <i class="fab fa-github"></i> GitHub
-                    </div>
-                    <div class="tech-tag">
-                        <i class="fas fa-terminal text-green-400"></i> Terminal
-                    </div>
-                    <div class="tech-tag">
-                        <i class="fas fa-code text-blue-400"></i> VS Code
-                    </div>
-                </div>
+            <div class="tech-tag">
+              <i class="fas fa-leaf text-green-500"></i> Spring Boot
             </div>
+            <div class="tech-tag">
+              <i class="fab fa-node text-green-600"></i> Node.js
+            </div>
+            <div class="tech-tag">
+              <i class="fas fa-cube text-yellow-600"></i> Express
+            </div>
+            <div class="tech-tag">
+              <i class="fas fa-database text-blue-500"></i> PostgreSQL
+            </div>
+            <div class="tech-tag">
+              <i class="fas fa-database text-orange-500"></i> MySQL
+            </div>
+            <div class="tech-tag">
+              <i class="fas fa-cube text-blue-400"></i> REST APIs
+            </div>
+            <div class="tech-tag">
+              <i class="fas fa-code-branch text-purple-500"></i> Microservices
+            </div>
+          </div>
         </div>
+
+        <!-- Frontend -->
+        <div class="mb-16">
+          <h3
+            class="text-xl font-semibold text-orange-400 mb-6 flex items-center gap-2"
+          >
+            <i class="fas fa-palette"></i> Frontend & Design
+          </h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div class="tech-tag">
+              <i class="fab fa-html5 text-orange-600"></i> HTML5
+            </div>
+            <div class="tech-tag">
+              <i class="fab fa-css3-alt text-blue-600"></i> CSS3
+            </div>
+            <div class="tech-tag">
+              <i class="fab fa-js text-yellow-500"></i> JavaScript
+            </div>
+            <div class="tech-tag"><i class="fas fa-wind"></i> Tailwind</div>
+            <div class="tech-tag">
+              <i class="fas fa-pencil text-pink-500"></i> Figma
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div>
+          <h3
+            class="text-xl font-semibold text-orange-400 mb-6 flex items-center gap-2"
+          >
+            <i class="fas fa-tools"></i> Ferramentas & Versionamento
+          </h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div class="tech-tag">
+              <i class="fab fa-git-alt text-orange-600"></i> Git
+            </div>
+            <div class="tech-tag"><i class="fab fa-github"></i> GitHub</div>
+            <div class="tech-tag">
+              <i class="fas fa-terminal text-green-400"></i> Terminal
+            </div>
+            <div class="tech-tag">
+              <i class="fas fa-code text-blue-400"></i> VS Code
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projetos" class="py-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold mb-16">Projetos em Destaque</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- CornerCraft -->
-                <div class="project-card">
-                    <div class="bg-slate-800/50 flex items-center justify-center p-8 h-48">
-                        <div class="text-center">
-                            <i class="fas fa-book text-5xl text-orange-400 mb-4"></i>
-                            <p class="text-slate-400 text-sm">CornerCraft - Plataforma de Tutoriais</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-orange-400 mb-3">CornerCraft</h3>
-                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">
-                            Plataforma completa para publicação e acesso de tutoriais. Sistema robusto de autenticação, 
-                            gerenciamento de conteúdo e interface moderna.
-                        </p>
-                        <div class="mb-4 flex flex-wrap gap-2">
-                            <span class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded">Full Stack</span>
-                            <span class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded">Node.js</span>
-                            <span class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded">MySQL</span>
-                        </div>
-                        <a href="https://github.com/joaofsdev/cornercraft" target="_blank"
-                           class="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors font-medium text-sm">
-                            <i class="fab fa-github"></i> Ver no GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Hamburgueria X-Tudo -->
-                <div class="project-card">
-                    <div class="bg-slate-800/50 flex items-center justify-center p-8 h-48">
-                        <div class="text-center">
-                            <i class="fas fa-receipt text-5xl text-blue-400 mb-4"></i>
-                            <p class="text-slate-400 text-sm">Sistema de Gestão - Hamburgueria</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-orange-400 mb-3">Hamburgueria X-Tudo</h3>
-                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">
-                            Sistema completo de gestão com controle de pedidos, painel administrativo, 
-                            gerenciamento de produtos e sistema de delivery integrado.
-                        </p>
-                        <div class="mb-4 flex flex-wrap gap-2">
-                            <span class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded">Progress 4GL</span>
-                            <span class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded">Backend</span>
-                        </div>
-                        <a href="https://github.com/joaofsdev/Sistema-Gestao-XTudo" target="_blank"
-                           class="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors font-medium text-sm">
-                            <i class="fab fa-github"></i> Ver no GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- CitySave -->
-                <div class="project-card">
-                    <div class="bg-slate-800/50 flex items-center justify-center p-8 h-48">
-                        <div class="text-center">
-                            <i class="fas fa-chart-line text-5xl text-orange-400 mb-4"></i>
-                            <p class="text-slate-400 text-sm">Comparativo de Custos de Vida</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-orange-400 mb-3">CitySave</h3>
-                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">
-                            Aplicação web para comparação de custos de vida entre cidades. Interface intuitiva 
-                            com dados em tempo real e gráficos interativos.
-                        </p>
-                        <div class="mb-4 flex flex-wrap gap-2">
-                            <span class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded">Full Stack</span>
-                            <span class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded">Node.js</span>
-                            <span class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded">MySQL</span>
-                        </div>
-                        <a href="https://github.com/joaofsdev/citysave" target="_blank"
-                           class="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors font-medium text-sm">
-                            <i class="fab fa-github"></i> Ver no GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Mais Projetos CTA -->
-                <div class="project-card flex items-center justify-center">
-                    <div class="text-center">
-                        <i class="fas fa-code text-5xl text-slate-600 mb-4"></i>
-                        <p class="text-slate-400 mb-6">Veja mais projetos no meu GitHub</p>
-                        <a href="https://github.com/joaofsdev" target="_blank"
-                           class="inline-flex items-center gap-2 px-6 py-2 bg-orange-600 hover:bg-orange-700 rounded-lg font-medium transition-colors">
-                            <i class="fab fa-github"></i> Visitar GitHub
-                        </a>
-                    </div>
-                </div>
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold mb-16">Projetos em Destaque</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- CornerCraft -->
+          <div class="project-card">
+            <div
+              class="bg-slate-800/50 flex items-center justify-center p-8 h-48"
+            >
+              <div class="text-center">
+                <i class="fas fa-book text-5xl text-orange-400 mb-4"></i>
+                <p class="text-slate-400 text-sm">
+                  CornerCraft - Plataforma de Tutoriais
+                </p>
+              </div>
             </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-orange-400 mb-3">
+                CornerCraft
+              </h3>
+              <p class="text-slate-400 mb-4 text-sm leading-relaxed">
+                Plataforma completa para publicação e acesso de tutoriais.
+                Sistema robusto de autenticação, gerenciamento de conteúdo e
+                interface moderna.
+              </p>
+              <div class="mb-4 flex flex-wrap gap-2">
+                <span
+                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
+                  >Full Stack</span
+                >
+                <span
+                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
+                  >Node.js</span
+                >
+                <span
+                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
+                  >MySQL</span
+                >
+              </div>
+              <a
+                href="https://github.com/joaofsdev/cornercraft"
+                target="_blank"
+                class="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors font-medium text-sm"
+              >
+                <i class="fab fa-github"></i> Ver no GitHub
+              </a>
+            </div>
+          </div>
+
+          <!-- Hamburgueria X-Tudo -->
+          <div class="project-card">
+            <div
+              class="bg-slate-800/50 flex items-center justify-center p-8 h-48"
+            >
+              <div class="text-center">
+                <i class="fas fa-receipt text-5xl text-blue-400 mb-4"></i>
+                <p class="text-slate-400 text-sm">
+                  Sistema de Gestão - Hamburgueria
+                </p>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-orange-400 mb-3">
+                Hamburgueria X-Tudo
+              </h3>
+              <p class="text-slate-400 mb-4 text-sm leading-relaxed">
+                Sistema completo de gestão com controle de pedidos, painel
+                administrativo, gerenciamento de produtos e sistema de delivery
+                integrado.
+              </p>
+              <div class="mb-4 flex flex-wrap gap-2">
+                <span
+                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
+                  >Progress 4GL</span
+                >
+                <span
+                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
+                  >Backend</span
+                >
+              </div>
+              <a
+                href="https://github.com/joaofsdev/Sistema-Gestao-XTudo"
+                target="_blank"
+                class="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors font-medium text-sm"
+              >
+                <i class="fab fa-github"></i> Ver no GitHub
+              </a>
+            </div>
+          </div>
+
+          <!-- CitySave -->
+          <div class="project-card">
+            <div
+              class="bg-slate-800/50 flex items-center justify-center p-8 h-48"
+            >
+              <div class="text-center">
+                <i class="fas fa-chart-line text-5xl text-orange-400 mb-4"></i>
+                <p class="text-slate-400 text-sm">
+                  Comparativo de Custos de Vida
+                </p>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-orange-400 mb-3">CitySave</h3>
+              <p class="text-slate-400 mb-4 text-sm leading-relaxed">
+                Aplicação web para comparação de custos de vida entre cidades.
+                Interface intuitiva com dados em tempo real e gráficos
+                interativos.
+              </p>
+              <div class="mb-4 flex flex-wrap gap-2">
+                <span
+                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
+                  >Full Stack</span
+                >
+                <span
+                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
+                  >Node.js</span
+                >
+                <span
+                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
+                  >MySQL</span
+                >
+              </div>
+              <a
+                href="https://github.com/joaofsdev/citysave"
+                target="_blank"
+                class="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors font-medium text-sm"
+              >
+                <i class="fab fa-github"></i> Ver no GitHub
+              </a>
+            </div>
+          </div>
+
+          <!-- Mais Projetos CTA -->
+          <div class="project-card flex items-center justify-center">
+            <div class="text-center">
+              <i class="fas fa-code text-5xl text-slate-600 mb-4"></i>
+              <p class="text-slate-400 mb-6">
+                Veja mais projetos no meu GitHub
+              </p>
+              <a
+                href="https://github.com/joaofsdev"
+                target="_blank"
+                class="inline-flex items-center gap-2 px-6 py-2 bg-orange-600 hover:bg-orange-700 rounded-lg font-medium transition-colors"
+              >
+                <i class="fab fa-github"></i> Visitar GitHub
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contato" class="py-20 px-6 bg-slate-900/50 border-t border-slate-800">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold mb-4">Vamos Conversar?</h2>
-            <p class="text-slate-400 mb-12 text-lg">
-                Estou aberto para discutir novos projetos, ideias criativas ou oportunidades de colaboração.
-            </p>
+    <section
+      id="contato"
+      class="py-20 px-6 bg-slate-900/50 border-t border-slate-800"
+    >
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-4">Vamos Conversar?</h2>
+        <p class="text-slate-400 mb-12 text-lg">
+          Estou aberto para discutir novos projetos, ideias criativas ou
+          oportunidades de colaboração.
+        </p>
 
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Links -->
-                <div class="space-y-6">
-                    <a href="mailto:joao.franciscos047@gmail.com" 
-                       class="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-orange-500 transition-all group">
-                        <div class="text-orange-400 text-xl mt-1">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-white mb-1">Email</h3>
-                            <p class="text-slate-400 text-sm group-hover:text-slate-300 transition-colors">joao.franciscos047@gmail.com</p>
-                        </div>
-                    </a>
+        <div class="grid md:grid-cols-2 gap-12">
+          <!-- Links -->
+          <div class="space-y-6">
+            <a
+              href="mailto:joao.franciscos047@gmail.com"
+              class="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-orange-500 transition-all group"
+            >
+              <div class="text-orange-400 text-xl mt-1">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-white mb-1">Email</h3>
+                <p
+                  class="text-slate-400 text-sm group-hover:text-slate-300 transition-colors"
+                >
+                  joao.franciscos047@gmail.com
+                </p>
+              </div>
+            </a>
 
-                    <a href="https://www.linkedin.com/in/joaofsdev/" target="_blank"
-                       class="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-orange-500 transition-all group">
-                        <div class="text-orange-400 text-xl mt-1">
-                            <i class="fab fa-linkedin"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-white mb-1">LinkedIn</h3>
-                            <p class="text-slate-400 text-sm group-hover:text-slate-300 transition-colors">/in/joaofsdev</p>
-                        </div>
-                    </a>
+            <a
+              href="https://www.linkedin.com/in/joaofsdev/"
+              target="_blank"
+              class="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-orange-500 transition-all group"
+            >
+              <div class="text-orange-400 text-xl mt-1">
+                <i class="fab fa-linkedin"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-white mb-1">LinkedIn</h3>
+                <p
+                  class="text-slate-400 text-sm group-hover:text-slate-300 transition-colors"
+                >
+                  /in/joaofsdev
+                </p>
+              </div>
+            </a>
 
-                    <a href="https://github.com/joaofsdev" target="_blank"
-                       class="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-orange-500 transition-all group">
-                        <div class="text-orange-400 text-xl mt-1">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-white mb-1">GitHub</h3>
-                            <p class="text-slate-400 text-sm group-hover:text-slate-300 transition-colors">@joaofsdev</p>
-                        </div>
-                    </a>
+            <a
+              href="https://github.com/joaofsdev"
+              target="_blank"
+              class="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-orange-500 transition-all group"
+            >
+              <div class="text-orange-400 text-xl mt-1">
+                <i class="fab fa-github"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-white mb-1">GitHub</h3>
+                <p
+                  class="text-slate-400 text-sm group-hover:text-slate-300 transition-colors"
+                >
+                  @joaofsdev
+                </p>
+              </div>
+            </a>
 
-                    <a href="https://wa.me/+5547988162658" target="_blank"
-                       class="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-orange-500 transition-all group">
-                        <div class="text-orange-400 text-xl mt-1">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-white mb-1">WhatsApp</h3>
-                            <p class="text-slate-400 text-sm group-hover:text-slate-300 transition-colors">+55 47 98816-2658</p>
-                        </div>
-                    </a>
-                </div>
+            <a
+              href="https://wa.me/+5547988162658"
+              target="_blank"
+              class="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-orange-500 transition-all group"
+            >
+              <div class="text-orange-400 text-xl mt-1">
+                <i class="fab fa-whatsapp"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-white mb-1">WhatsApp</h3>
+                <p
+                  class="text-slate-400 text-sm group-hover:text-slate-300 transition-colors"
+                >
+                  +55 47 98816-2658
+                </p>
+              </div>
+            </a>
+          </div>
 
-                <!-- Form -->
-                <div>
-                    <form id="contactForm" class="space-y-4">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Nome</label>
-                            <input type="text" id="name" name="name" required
-                                class="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email</label>
-                            <input type="email" id="email" name="email" required
-                                class="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
-                        </div>
-                        <div>
-                            <label for="subject" class="block text-sm font-medium text-slate-300 mb-2">Assunto</label>
-                            <input type="text" id="subject" name="subject" required
-                                class="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-slate-300 mb-2">Mensagem</label>
-                            <textarea id="message" name="message" rows="4" required
-                                class="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors resize-none"></textarea>
-                        </div>
-                        <button type="submit"
-                            class="w-full px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2">
-                            <i class="fas fa-send"></i> Enviar Mensagem
-                        </button>
-                    </form>
-                </div>
-            </div>
+          <!-- Form -->
+          <div>
+            <form id="contactForm" class="space-y-4">
+              <div>
+                <label
+                  for="name"
+                  class="block text-sm font-medium text-slate-300 mb-2"
+                  >Nome</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                />
+              </div>
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-slate-300 mb-2"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                />
+              </div>
+              <div>
+                <label
+                  for="subject"
+                  class="block text-sm font-medium text-slate-300 mb-2"
+                  >Assunto</label
+                >
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  required
+                  class="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                />
+              </div>
+              <div>
+                <label
+                  for="message"
+                  class="block text-sm font-medium text-slate-300 mb-2"
+                  >Mensagem</label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  required
+                  class="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors resize-none"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+              >
+                <i class="fas fa-send"></i> Enviar Mensagem
+              </button>
+            </form>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="py-8 px-6 border-t border-slate-800">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center text-slate-400 text-sm gap-6">
-            <p>© 2025 João Francisco da Silva. Todos os direitos reservados.</p>
-            <div class="flex gap-6">
-                <a href="https://github.com/joaofsdev" target="_blank" class="hover:text-orange-400 transition-colors">
-                    <i class="fab fa-github text-lg"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/joaofsdev/" target="_blank" class="hover:text-orange-400 transition-colors">
-                    <i class="fab fa-linkedin text-lg"></i>
-                </a>
-                <a href="https://wa.me/+5547988162658" target="_blank" class="hover:text-orange-400 transition-colors">
-                    <i class="fab fa-whatsapp text-lg"></i>
-                </a>
-            </div>
+      <div
+        class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center text-slate-400 text-sm gap-6"
+      >
+        <p>© 2025 João Francisco da Silva. Todos os direitos reservados.</p>
+        <div class="flex gap-6">
+          <a
+            href="https://github.com/joaofsdev"
+            target="_blank"
+            class="hover:text-orange-400 transition-colors"
+          >
+            <i class="fab fa-github text-lg"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/joaofsdev/"
+            target="_blank"
+            class="hover:text-orange-400 transition-colors"
+          >
+            <i class="fab fa-linkedin text-lg"></i>
+          </a>
+          <a
+            href="https://wa.me/+5547988162658"
+            target="_blank"
+            class="hover:text-orange-400 transition-colors"
+          >
+            <i class="fab fa-whatsapp text-lg"></i>
+          </a>
         </div>
+      </div>
     </footer>
 
     <!-- Scroll to Top Button -->
-    <button id="scroll-to-top" class="fixed bottom-8 right-8 w-10 h-10 bg-orange-600 hover:bg-orange-700 text-white rounded-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 shadow-lg">
-        <i class="fas fa-arrow-up"></i>
+    <button
+      id="scroll-to-top"
+      class="fixed bottom-8 right-8 w-10 h-10 bg-orange-600 hover:bg-orange-700 text-white rounded-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 shadow-lg"
+    >
+      <i class="fas fa-arrow-up"></i>
     </button>
 
     <script src="src/js/main.js"></script>
-</body>
-
+  </body>
 </html>
