@@ -3,659 +3,361 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>João Francisco - Engenheiro de Software Backend</title>
+    <title>João Francisco da Silva — Engenheiro de Software Backend</title>
+    <meta name="description" content="Engenheiro de Software com foco em back-end escalável. Java, Spring Boot, TypeScript, React. Portfolio de projetos e contato profissional." />
+    <meta name="author" content="João Francisco da Silva" />
+    <meta name="keywords" content="Engenheiro de Software, Backend, Java, Spring Boot, React, TypeScript, Portfolio" />
+    <meta property="og:title" content="João Francisco da Silva — Engenheiro de Software Backend" />
+    <meta property="og:description" content="Construindo APIs robustas e soluções escaláveis com Java, Spring Boot e TypeScript." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://joaofsdev.github.io/portfolio/" />
     <link rel="icon" type="image/png" href="src/assets/icons/logotipo.jpg" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-      .gradient-text {
-        background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      .tech-tag {
-        @apply inline-flex items-center gap-2 px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-medium text-slate-300 hover:border-orange-500 transition-colors;
-      }
-      .project-card {
-        @apply bg-slate-900 border border-slate-800 rounded-lg overflow-hidden hover:border-orange-500 transition-all duration-300;
-      }
-
-      /* Animações fluidas */
-      section.animate-section {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      section.animate-fade-in {
-        animation: smoothFadeIn 0.8s ease-out forwards;
-      }
-
-      @keyframes smoothFadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="src/css/styles.css" />
   </head>
 
-  <body class="bg-slate-950 text-slate-100 font-sans antialiased">
-    <!-- Header -->
-    <header
-      class="fixed top-0 w-full bg-slate-950/80 backdrop-blur-sm border-b border-slate-800 z-50"
-    >
-      <nav
-        class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center"
-      >
-        <a href="#" class="text-xl font-bold text-orange-400">JoaoFS Dev</a>
-        <ul class="hidden md:flex gap-8 text-sm text-slate-400">
-          <li>
-            <a href="#sobre" class="hover:text-orange-400 transition-colors"
-              >Sobre</a
-            >
-          </li>
-          <li>
-            <a href="#stack" class="hover:text-orange-400 transition-colors"
-              >Stack</a
-            >
-          </li>
-          <li>
-            <a href="#projetos" class="hover:text-orange-400 transition-colors"
-              >Projetos</a
-            >
-          </li>
-          <li>
-            <a href="#contato" class="hover:text-orange-400 transition-colors"
-              >Contato</a
-            >
-          </li>
-        </ul>
-        <button
-          id="mobile-menu-btn"
-          class="md:hidden text-slate-400 hover:text-orange-400"
-        >
-          <i class="fas fa-bars text-xl"></i>
-        </button>
-      </nav>
-      <div
-        id="mobile-menu"
-        class="md:hidden hidden bg-slate-900 border-t border-slate-800"
-      >
-        <ul class="flex flex-col gap-3 p-4 text-sm text-slate-400">
-          <li>
-            <a href="#sobre" class="block hover:text-orange-400">Sobre</a>
-          </li>
-          <li>
-            <a href="#stack" class="block hover:text-orange-400">Stack</a>
-          </li>
-          <li>
-            <a href="#projetos" class="block hover:text-orange-400">Projetos</a>
-          </li>
-          <li>
-            <a href="#contato" class="block hover:text-orange-400">Contato</a>
-          </li>
-        </ul>
-      </div>
-    </header>
+  <body>
+    <!-- Skip to content (accessibility) -->
+    <a href="#hero" class="skip-link">Pular para o conteúdo</a>
 
-    <!-- Hero Section -->
-    <section id="sobre" class="pt-32 pb-20 px-6">
-      <div class="max-w-6xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <div class="mb-6">
-              <span
-                class="inline-block px-3 py-1 bg-orange-500/10 border border-orange-500/30 rounded-full text-sm text-orange-400 font-medium"
-                >Engenheiro de Software Backend</span
-              >
+    <!-- Animated background -->
+    <div class="bg-mesh" aria-hidden="true">
+      <div class="bg-orb bg-orb--1"></div>
+      <div class="bg-orb bg-orb--2"></div>
+      <div class="bg-orb bg-orb--3"></div>
+    </div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="hero" class="hero">
+      <div class="hero__container">
+        <div class="hero__content">
+          <div class="hero__badge">
+            <span class="hero__badge-dot"></span>
+            Disponível para oportunidades
+          </div>
+
+          <h1 class="hero__title">
+            <span class="hero__title-line">
+              <span class="text-reveal" data-delay="0">J</span><span class="text-reveal" data-delay="1">o</span><span class="text-reveal" data-delay="2">ã</span><span class="text-reveal" data-delay="3">o</span>
+            </span>
+            <span class="hero__title-line hero__title-line--accent text-reveal-word" data-delay="5">Francisco</span>
+          </h1>
+
+          <div class="hero__typewriter">
+            <span class="hero__typewriter-prefix">&gt;</span>
+            <span class="hero__typewriter-text" id="typewriter"></span>
+            <span class="hero__typewriter-cursor">|</span>
+          </div>
+
+          <p class="hero__description">
+            Engenheiro de Software com foco em arquitetar e construir soluções back-end
+            escaláveis e reutilizáveis, principalmente com <strong>Java</strong> e <strong>Spring Boot</strong>.
+            Experiência prática em sistemas de tempo real, APIs RESTful e infraestrutura.
+          </p>
+
+          <div class="hero__actions">
+            <a href="src/assets/docs/Joao_Francisco_Silva_Backend_Java.pdf" target="_blank" class="btn btn--primary">
+              <i class="fas fa-download"></i> Download CV
+            </a>
+            <a href="#contato" class="btn btn--outline">
+              <i class="fas fa-envelope"></i> Contato
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <div class="hero__photo-wrapper">
+            <div class="hero__photo-glow"></div>
+            <img src="src/assets/icons/perfil.jpeg" alt="João Francisco da Silva" class="hero__photo" />
+          </div>
+
+          <!-- Floating badges -->
+          <div class="floating-badge floating-badge--1" aria-hidden="true">
+            <i class="fab fa-java"></i> Java
+          </div>
+          <div class="floating-badge floating-badge--2" aria-hidden="true">
+            <i class="fas fa-leaf"></i> Spring
+          </div>
+          <div class="floating-badge floating-badge--3" aria-hidden="true">
+            <i class="fab fa-react"></i> React
+          </div>
+          <div class="floating-badge floating-badge--4" aria-hidden="true">
+            <i class="fab fa-docker"></i> Docker
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== STACK SECTION ===== -->
+    <section id="stack" class="section stack">
+      <div class="section__container">
+        <h2 class="section__title">Stack Tecnológico</h2>
+        <p class="section__subtitle">Tecnologias que uso para construir soluções robustas e escaláveis</p>
+
+        <div class="stack__grid">
+          <!-- Backend -->
+          <div class="stack__category glass-card">
+            <div class="stack__category-header">
+              <i class="fas fa-server"></i>
+              <h3>Backend</h3>
             </div>
-            <h1
-              class="text-4xl md:text-5xl xl:text-6xl font-bold mb-6 leading-tight"
-            >
-              João <span class="gradient-text">Francisco</span>
-            </h1>
-            <p class="text-lg text-slate-400 mb-8 leading-relaxed max-w-lg">
-              Construindo APIs robustas e aplicações escaláveis. Especializado
-              em arquitetura backend, spring boot e banco de dados.
-              Transformando ideias em soluções elegantes através de código
-              limpo.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a
-                href="src/assets/docs/Joao_Francisco_Silva_Backend_Java.pdf"
-                target="_blank"
-                class="px-6 py-3 bg-orange-600 hover:bg-orange-700 rounded-lg font-medium transition-colors inline-flex items-center justify-center gap-2"
-              >
-                <i class="fas fa-download"></i> Download CV
-              </a>
-              <a
-                href="#contato"
-                class="px-6 py-3 border border-orange-500 text-orange-400 hover:bg-orange-500/10 rounded-lg font-medium transition-colors inline-flex items-center justify-center gap-2"
-              >
-                <i class="fas fa-envelope"></i> Entre em Contato
-              </a>
+            <div class="stack__tags">
+              <span class="tech-tag" data-color="#e76f00"><i class="fab fa-java"></i> Java</span>
+              <span class="tech-tag" data-color="#6db33f"><i class="fas fa-leaf"></i> Spring Boot</span>
+              <span class="tech-tag" data-color="#68a063"><i class="fab fa-node"></i> Node.js</span>
+              <span class="tech-tag" data-color="#000000"><i class="fas fa-bolt"></i> Fastify</span>
+              <span class="tech-tag" data-color="#336791"><i class="fas fa-database"></i> PostgreSQL</span>
+              <span class="tech-tag" data-color="#4479a1"><i class="fas fa-database"></i> MySQL</span>
+              <span class="tech-tag" data-color="#59666c"><i class="fas fa-plug"></i> WebSocket/STOMP</span>
+              <span class="tech-tag" data-color="#ff6b35"><i class="fas fa-cube"></i> REST APIs</span>
+              <span class="tech-tag" data-color="#3178c6"><i class="fas fa-shield-halved"></i> JWT/Auth</span>
             </div>
           </div>
-          <div class="flex justify-center">
-            <div class="relative">
-              <div
-                class="w-56 h-56 md:w-72 md:h-72 rounded-2xl bg-gradient-to-br from-orange-500/20 to-slate-900 border border-orange-500/30 overflow-hidden"
-              >
-                <img
-                  src="src/assets/icons/perfil.jpeg"
-                  alt="João Francisco"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <div
-                class="absolute -bottom-4 -right-4 px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg text-sm text-slate-400"
-              >
-                <i class="fas fa-terminal text-orange-400 mr-2"></i> Junior
-                Backend
-              </div>
+
+          <!-- Frontend -->
+          <div class="stack__category glass-card">
+            <div class="stack__category-header">
+              <i class="fas fa-palette"></i>
+              <h3>Frontend</h3>
+            </div>
+            <div class="stack__tags">
+              <span class="tech-tag" data-color="#61dafb"><i class="fab fa-react"></i> React</span>
+              <span class="tech-tag" data-color="#3178c6"><i class="fas fa-code"></i> TypeScript</span>
+              <span class="tech-tag" data-color="#38bdf8"><i class="fas fa-wind"></i> Tailwind CSS</span>
+              <span class="tech-tag" data-color="#646cff"><i class="fas fa-bolt"></i> Vite</span>
+              <span class="tech-tag" data-color="#e34f26"><i class="fab fa-html5"></i> HTML5</span>
+              <span class="tech-tag" data-color="#1572b6"><i class="fab fa-css3-alt"></i> CSS3</span>
+              <span class="tech-tag" data-color="#f7df1e"><i class="fab fa-js"></i> JavaScript</span>
+            </div>
+          </div>
+
+          <!-- DevOps & Tools -->
+          <div class="stack__category glass-card">
+            <div class="stack__category-header">
+              <i class="fas fa-tools"></i>
+              <h3>DevOps & Ferramentas</h3>
+            </div>
+            <div class="stack__tags">
+              <span class="tech-tag" data-color="#2496ed"><i class="fab fa-docker"></i> Docker</span>
+              <span class="tech-tag" data-color="#f05032"><i class="fab fa-git-alt"></i> Git</span>
+              <span class="tech-tag" data-color="#ffffff"><i class="fab fa-github"></i> GitHub</span>
+              <span class="tech-tag" data-color="#e6522c"><i class="fas fa-fire"></i> Prometheus</span>
+              <span class="tech-tag" data-color="#f46800"><i class="fas fa-chart-line"></i> Grafana</span>
+              <span class="tech-tag" data-color="#4285f4"><i class="fas fa-eye"></i> OpenTelemetry</span>
+              <span class="tech-tag" data-color="#ff9900"><i class="fab fa-aws"></i> AWS EC2</span>
+              <span class="tech-tag" data-color="#fcc624"><i class="fab fa-linux"></i> Linux</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Sobre Section -->
-    <section class="py-20 px-6 border-t border-slate-800">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-bold mb-12">Sobre Mim</h2>
-        <div class="grid md:grid-cols-2 gap-12">
-          <div>
-            <h3 class="text-xl font-semibold text-orange-400 mb-4">
-              Quem sou?
-            </h3>
-            <p class="text-slate-400 leading-relaxed">
-              Sou um Engenheiro de Software Backend com paixão por resolver
-              problemas complexos através de código limpo e eficiente. Tenho
-              foco em construir sistemas escaláveis, robustos e bem
-              arquitetados. Aprofundei meus conhecimentos no ecossistema
-              corporativo, sempre buscando as melhores práticas do mercado.
-            </p>
-          </div>
-          <div>
-            <h3 class="text-xl font-semibold text-orange-400 mb-4">Formação</h3>
-            <ul class="text-slate-400 space-y-3">
-              <li class="flex items-start gap-3">
-                <span class="text-orange-400 mt-1">→</span>
-                <span
-                  ><strong>Engenharia de Software</strong> - Cátolica de
-                  SC</span
-                >
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-orange-400 mt-1">→</span>
-                <span
-                  ><strong>Técnico em Análise de Sistemas</strong> - SENAI</span
-                >
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-orange-400 mt-1">→</span>
-                <span
-                  >Aprendizado contínuo em arquitetura de software e cloud</span
-                >
-              </li>
-            </ul>
-          </div>
+    <!-- ===== PROJECTS SECTION ===== -->
+    <section id="projetos" class="section projects">
+      <div class="section__container">
+        <h2 class="section__title">Projetos em Destaque</h2>
+        <p class="section__subtitle">Sistemas completos desenvolvidos com foco em qualidade e escalabilidade</p>
+
+        <div class="projects__grid">
+          <!-- Batalha Naval -->
+          <article class="project-card" data-tilt>
+            <div class="project-card__glare"></div>
+            <div class="project-card__border"></div>
+            <div class="project-card__content">
+              <div class="project-card__header">
+                <div class="project-card__icon">
+                  <i class="fas fa-ship"></i>
+                </div>
+                <div class="project-card__links">
+                  <a href="https://batalhanaval-tau.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Demo Batalha Naval" class="project-card__link">
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                  <a href="https://github.com/joaofsdev/batalhanaval" target="_blank" rel="noopener noreferrer" aria-label="GitHub Batalha Naval" class="project-card__link">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+
+              <h3 class="project-card__title">Batalha Naval — Multiplayer</h3>
+              <p class="project-card__description">
+                Jogo multiplayer em tempo real com WebSocket/STOMP, matchmaking automático,
+                ranking Elo, modo Storm com habilidades especiais e eventos climáticos.
+                Stack completa de observabilidade com Prometheus, Grafana e OpenTelemetry.
+              </p>
+
+              <div class="project-card__tags">
+                <span>Java 21</span>
+                <span>Spring Boot</span>
+                <span>WebSocket</span>
+                <span>React</span>
+                <span>PostgreSQL</span>
+                <span>Docker</span>
+                <span>Prometheus</span>
+                <span>Grafana</span>
+              </div>
+
+              <div class="project-card__meta">
+                <span><i class="fas fa-code-branch"></i> 134 commits</span>
+                <span><i class="fas fa-users"></i> Multiplayer</span>
+                <span><i class="fas fa-clock"></i> Tempo Real</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Trainly -->
+          <article class="project-card" data-tilt>
+            <div class="project-card__glare"></div>
+            <div class="project-card__border"></div>
+            <div class="project-card__content">
+              <div class="project-card__header">
+                <div class="project-card__icon">
+                  <i class="fas fa-dumbbell"></i>
+                </div>
+                <div class="project-card__links">
+                  <a href="https://trainly-sandy.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Demo Trainly" class="project-card__link">
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                  <a href="https://github.com/joaofsdev/trainly" target="_blank" rel="noopener noreferrer" aria-label="GitHub Trainly" class="project-card__link">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+
+              <h3 class="project-card__title">Trainly — Fitness Platform</h3>
+              <p class="project-card__description">
+                Plataforma de fitness com sistema de treinos personalizados e acompanhamento
+                de progresso. Backend TypeScript com Fastify, Drizzle ORM e SQLite.
+                Frontend React moderno com gráficos interativos e validação com Zod.
+              </p>
+
+              <div class="project-card__tags">
+                <span>TypeScript</span>
+                <span>Fastify</span>
+                <span>Drizzle ORM</span>
+                <span>React 19</span>
+                <span>Tailwind CSS</span>
+                <span>Zod</span>
+                <span>Recharts</span>
+                <span>Motion</span>
+              </div>
+
+              <div class="project-card__meta">
+                <span><i class="fas fa-layer-group"></i> Full Stack</span>
+                <span><i class="fas fa-chart-bar"></i> Dashboards</span>
+                <span><i class="fas fa-shield-halved"></i> JWT Auth</span>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- Stack Section -->
-    <section
-      id="stack"
-      class="py-20 px-6 bg-slate-900/50 border-y border-slate-800"
-    >
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold mb-16">Stack Tecnológico</h2>
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contato" class="section contact">
+      <div class="section__container">
+        <h2 class="section__title">Vamos Conversar?</h2>
+        <p class="section__subtitle">Estou aberto para discutir novos projetos, ideias criativas ou oportunidades de colaboração.</p>
 
-        <!-- Backend -->
-        <div class="mb-16">
-          <h3
-            class="text-xl font-semibold text-orange-400 mb-6 flex items-center gap-2"
-          >
-            <i class="fas fa-server"></i> Backend & Banco de Dados
-          </h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <div class="tech-tag">
-              <i class="fab fa-java text-red-500"></i> Java
-            </div>
-            <div class="tech-tag">
-              <i class="fas fa-leaf text-green-500"></i> Spring Boot
-            </div>
-            <div class="tech-tag">
-              <i class="fab fa-node text-green-600"></i> Node.js
-            </div>
-            <div class="tech-tag">
-              <i class="fas fa-cube text-yellow-600"></i> Express
-            </div>
-            <div class="tech-tag">
-              <i class="fas fa-database text-blue-500"></i> PostgreSQL
-            </div>
-            <div class="tech-tag">
-              <i class="fas fa-database text-orange-500"></i> MySQL
-            </div>
-            <div class="tech-tag">
-              <i class="fas fa-cube text-blue-400"></i> REST APIs
-            </div>
-            <div class="tech-tag">
-              <i class="fas fa-code-branch text-purple-500"></i> Microservices
-            </div>
-          </div>
-        </div>
-
-        <!-- Frontend -->
-        <div class="mb-16">
-          <h3
-            class="text-xl font-semibold text-orange-400 mb-6 flex items-center gap-2"
-          >
-            <i class="fas fa-palette"></i> Frontend & Design
-          </h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <div class="tech-tag">
-              <i class="fab fa-html5 text-orange-600"></i> HTML5
-            </div>
-            <div class="tech-tag">
-              <i class="fab fa-css3-alt text-blue-600"></i> CSS3
-            </div>
-            <div class="tech-tag">
-              <i class="fab fa-js text-yellow-500"></i> JavaScript
-            </div>
-            <div class="tech-tag"><i class="fas fa-wind"></i> Tailwind</div>
-            <div class="tech-tag">
-              <i class="fas fa-pencil text-pink-500"></i> Figma
-            </div>
-          </div>
-        </div>
-
-        <!-- Tools -->
-        <div>
-          <h3
-            class="text-xl font-semibold text-orange-400 mb-6 flex items-center gap-2"
-          >
-            <i class="fas fa-tools"></i> Ferramentas & Versionamento
-          </h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <div class="tech-tag">
-              <i class="fab fa-git-alt text-orange-600"></i> Git
-            </div>
-            <div class="tech-tag"><i class="fab fa-github"></i> GitHub</div>
-            <div class="tech-tag">
-              <i class="fas fa-terminal text-green-400"></i> Terminal
-            </div>
-            <div class="tech-tag">
-              <i class="fas fa-code text-blue-400"></i> VS Code
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projetos" class="py-20 px-6">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold mb-16">Projetos em Destaque</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-          <!-- CornerCraft -->
-          <div class="project-card">
-            <div
-              class="bg-slate-800/50 flex items-center justify-center p-8 h-48"
-            >
-              <div class="text-center">
-                <i class="fas fa-book text-5xl text-orange-400 mb-4"></i>
-                <p class="text-slate-400 text-sm">
-                  CornerCraft - Plataforma de Tutoriais
-                </p>
-              </div>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-orange-400 mb-3">
-                CornerCraft
-              </h3>
-              <p class="text-slate-400 mb-4 text-sm leading-relaxed">
-                Plataforma completa para publicação e acesso de tutoriais.
-                Sistema robusto de autenticação, gerenciamento de conteúdo e
-                interface moderna.
-              </p>
-              <div class="mb-4 flex flex-wrap gap-2">
-                <span
-                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
-                  >Full Stack</span
-                >
-                <span
-                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
-                  >Node.js</span
-                >
-                <span
-                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
-                  >MySQL</span
-                >
-              </div>
-              <a
-                href="https://github.com/joaofsdev/cornercraft"
-                target="_blank"
-                class="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors font-medium text-sm"
-              >
-                <i class="fab fa-github"></i> Ver no GitHub
-              </a>
-            </div>
-          </div>
-
-          <!-- Hamburgueria X-Tudo -->
-          <div class="project-card">
-            <div
-              class="bg-slate-800/50 flex items-center justify-center p-8 h-48"
-            >
-              <div class="text-center">
-                <i class="fas fa-receipt text-5xl text-blue-400 mb-4"></i>
-                <p class="text-slate-400 text-sm">
-                  Sistema de Gestão - Hamburgueria
-                </p>
-              </div>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-orange-400 mb-3">
-                Hamburgueria X-Tudo
-              </h3>
-              <p class="text-slate-400 mb-4 text-sm leading-relaxed">
-                Sistema completo de gestão com controle de pedidos, painel
-                administrativo, gerenciamento de produtos e sistema de delivery
-                integrado.
-              </p>
-              <div class="mb-4 flex flex-wrap gap-2">
-                <span
-                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
-                  >Progress 4GL</span
-                >
-                <span
-                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
-                  >Backend</span
-                >
-              </div>
-              <a
-                href="https://github.com/joaofsdev/Sistema-Gestao-XTudo"
-                target="_blank"
-                class="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors font-medium text-sm"
-              >
-                <i class="fab fa-github"></i> Ver no GitHub
-              </a>
-            </div>
-          </div>
-
-          <!-- CitySave -->
-          <div class="project-card">
-            <div
-              class="bg-slate-800/50 flex items-center justify-center p-8 h-48"
-            >
-              <div class="text-center">
-                <i class="fas fa-chart-line text-5xl text-orange-400 mb-4"></i>
-                <p class="text-slate-400 text-sm">
-                  Comparativo de Custos de Vida
-                </p>
-              </div>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-orange-400 mb-3">CitySave</h3>
-              <p class="text-slate-400 mb-4 text-sm leading-relaxed">
-                Aplicação web para comparação de custos de vida entre cidades.
-                Interface intuitiva com dados em tempo real e gráficos
-                interativos.
-              </p>
-              <div class="mb-4 flex flex-wrap gap-2">
-                <span
-                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
-                  >Full Stack</span
-                >
-                <span
-                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
-                  >Node.js</span
-                >
-                <span
-                  class="text-xs px-2 py-1 bg-slate-800 text-slate-300 rounded"
-                  >MySQL</span
-                >
-              </div>
-              <a
-                href="https://github.com/joaofsdev/citysave"
-                target="_blank"
-                class="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors font-medium text-sm"
-              >
-                <i class="fab fa-github"></i> Ver no GitHub
-              </a>
-            </div>
-          </div>
-
-          <!-- Mais Projetos CTA -->
-          <div class="project-card flex items-center justify-center">
-            <div class="text-center">
-              <i class="fas fa-code text-5xl text-slate-600 mb-4"></i>
-              <p class="text-slate-400 mb-6">
-                Veja mais projetos no meu GitHub
-              </p>
-              <a
-                href="https://github.com/joaofsdev"
-                target="_blank"
-                class="inline-flex items-center gap-2 px-6 py-2 bg-orange-600 hover:bg-orange-700 rounded-lg font-medium transition-colors"
-              >
-                <i class="fab fa-github"></i> Visitar GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section
-      id="contato"
-      class="py-20 px-6 bg-slate-900/50 border-t border-slate-800"
-    >
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-bold mb-4">Vamos Conversar?</h2>
-        <p class="text-slate-400 mb-12 text-lg">
-          Estou aberto para discutir novos projetos, ideias criativas ou
-          oportunidades de colaboração.
-        </p>
-
-        <div class="grid md:grid-cols-2 gap-12">
+        <div class="contact__grid">
           <!-- Links -->
-          <div class="space-y-6">
-            <a
-              href="mailto:joao.franciscos047@gmail.com"
-              class="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-orange-500 transition-all group"
-            >
-              <div class="text-orange-400 text-xl mt-1">
-                <i class="fas fa-envelope"></i>
-              </div>
+          <div class="contact__links">
+            <a href="mailto:joao.franciscos047@gmail.com" class="contact__card glass-card">
+              <div class="contact__card-icon"><i class="fas fa-envelope"></i></div>
               <div>
-                <h3 class="font-semibold text-white mb-1">Email</h3>
-                <p
-                  class="text-slate-400 text-sm group-hover:text-slate-300 transition-colors"
-                >
-                  joao.franciscos047@gmail.com
-                </p>
+                <h3>Email</h3>
+                <p>joao.franciscos047@gmail.com</p>
               </div>
             </a>
 
-            <a
-              href="https://www.linkedin.com/in/joaofsdev/"
-              target="_blank"
-              class="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-orange-500 transition-all group"
-            >
-              <div class="text-orange-400 text-xl mt-1">
-                <i class="fab fa-linkedin"></i>
-              </div>
+            <a href="https://www.linkedin.com/in/joaofsdev/" target="_blank" rel="noopener noreferrer" class="contact__card glass-card">
+              <div class="contact__card-icon"><i class="fab fa-linkedin"></i></div>
               <div>
-                <h3 class="font-semibold text-white mb-1">LinkedIn</h3>
-                <p
-                  class="text-slate-400 text-sm group-hover:text-slate-300 transition-colors"
-                >
-                  /in/joaofsdev
-                </p>
+                <h3>LinkedIn</h3>
+                <p>/in/joaofsdev</p>
               </div>
             </a>
 
-            <a
-              href="https://github.com/joaofsdev"
-              target="_blank"
-              class="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-orange-500 transition-all group"
-            >
-              <div class="text-orange-400 text-xl mt-1">
-                <i class="fab fa-github"></i>
-              </div>
+            <a href="https://github.com/joaofsdev" target="_blank" rel="noopener noreferrer" class="contact__card glass-card">
+              <div class="contact__card-icon"><i class="fab fa-github"></i></div>
               <div>
-                <h3 class="font-semibold text-white mb-1">GitHub</h3>
-                <p
-                  class="text-slate-400 text-sm group-hover:text-slate-300 transition-colors"
-                >
-                  @joaofsdev
-                </p>
+                <h3>GitHub</h3>
+                <p>@joaofsdev</p>
               </div>
             </a>
 
-            <a
-              href="https://wa.me/+5547988162658"
-              target="_blank"
-              class="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-orange-500 transition-all group"
-            >
-              <div class="text-orange-400 text-xl mt-1">
-                <i class="fab fa-whatsapp"></i>
-              </div>
+            <a href="https://wa.me/+5547988162658" target="_blank" rel="noopener noreferrer" class="contact__card glass-card">
+              <div class="contact__card-icon"><i class="fab fa-whatsapp"></i></div>
               <div>
-                <h3 class="font-semibold text-white mb-1">WhatsApp</h3>
-                <p
-                  class="text-slate-400 text-sm group-hover:text-slate-300 transition-colors"
-                >
-                  +55 47 98816-2658
-                </p>
+                <h3>WhatsApp</h3>
+                <p>+55 47 98816-2658</p>
               </div>
             </a>
           </div>
 
           <!-- Form -->
-          <div>
-            <form id="contactForm" class="space-y-4">
-              <div>
-                <label
-                  for="name"
-                  class="block text-sm font-medium text-slate-300 mb-2"
-                  >Nome</label
-                >
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  class="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-                />
+          <div class="contact__form-wrapper glass-card">
+            <form id="contactForm" class="contact__form">
+              <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" id="name" name="name" required placeholder="Seu nome" />
               </div>
-              <div>
-                <label
-                  for="email"
-                  class="block text-sm font-medium text-slate-300 mb-2"
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  class="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-                />
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="seu@email.com" />
               </div>
-              <div>
-                <label
-                  for="subject"
-                  class="block text-sm font-medium text-slate-300 mb-2"
-                  >Assunto</label
-                >
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  required
-                  class="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-                />
+              <div class="form-group">
+                <label for="subject">Assunto</label>
+                <input type="text" id="subject" name="subject" required placeholder="Sobre o que quer conversar?" />
               </div>
-              <div>
-                <label
-                  for="message"
-                  class="block text-sm font-medium text-slate-300 mb-2"
-                  >Mensagem</label
-                >
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="4"
-                  required
-                  class="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors resize-none"
-                ></textarea>
+              <div class="form-group">
+                <label for="message">Mensagem</label>
+                <textarea id="message" name="message" rows="4" required placeholder="Sua mensagem..."></textarea>
               </div>
-              <button
-                type="submit"
-                class="w-full px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
-              >
-                <i class="fas fa-send"></i> Enviar Mensagem
+              <button type="submit" class="btn btn--primary btn--full">
+                <i class="fas fa-paper-plane"></i> Enviar Mensagem
               </button>
+              <div id="form-notification" class="form-notification" role="alert" aria-live="polite"></div>
             </form>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-8 px-6 border-t border-slate-800">
-      <div
-        class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center text-slate-400 text-sm gap-6"
-      >
-        <p>© 2025 João Francisco da Silva. Todos os direitos reservados.</p>
-        <div class="flex gap-6">
-          <a
-            href="https://github.com/joaofsdev"
-            target="_blank"
-            class="hover:text-orange-400 transition-colors"
-          >
-            <i class="fab fa-github text-lg"></i>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/joaofsdev/"
-            target="_blank"
-            class="hover:text-orange-400 transition-colors"
-          >
-            <i class="fab fa-linkedin text-lg"></i>
-          </a>
-          <a
-            href="https://wa.me/+5547988162658"
-            target="_blank"
-            class="hover:text-orange-400 transition-colors"
-          >
-            <i class="fab fa-whatsapp text-lg"></i>
-          </a>
-        </div>
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="footer__container">
+        <p>&copy; 2026 João Francisco da Silva. Construído com HTML, CSS e JS puros.</p>
       </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
-    <button
-      id="scroll-to-top"
-      class="fixed bottom-8 right-8 w-10 h-10 bg-orange-600 hover:bg-orange-700 text-white rounded-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 shadow-lg"
-    >
-      <i class="fas fa-arrow-up"></i>
-    </button>
+    <!-- ===== FLOATING DOCK ===== -->
+    <nav class="dock" aria-label="Navegação principal">
+      <div class="dock__container glass-card">
+        <a href="#hero" class="dock__item" aria-label="Início" data-tooltip="Início">
+          <i class="fas fa-home"></i>
+        </a>
+        <a href="#stack" class="dock__item" aria-label="Stack" data-tooltip="Stack">
+          <i class="fas fa-layer-group"></i>
+        </a>
+        <a href="#projetos" class="dock__item" aria-label="Projetos" data-tooltip="Projetos">
+          <i class="fas fa-rocket"></i>
+        </a>
+        <a href="#contato" class="dock__item" aria-label="Contato" data-tooltip="Contato">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <div class="dock__separator"></div>
+        <a href="https://github.com/joaofsdev" target="_blank" rel="noopener noreferrer" class="dock__item" aria-label="GitHub" data-tooltip="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/joaofsdev/" target="_blank" rel="noopener noreferrer" class="dock__item" aria-label="LinkedIn" data-tooltip="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </nav>
 
     <script src="src/js/main.js"></script>
   </body>
