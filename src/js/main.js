@@ -13,24 +13,83 @@ document.addEventListener('DOMContentLoaded', () => {
   // ================================================
   // TEXT REVEAL ANIMATION
   // ================================================
-  const textRevealChars = document.querySelectorAll('.text-reveal');
-  const textRevealWords = document.querySelectorAll('.text-reveal-word');
+  // Single rAF pass instead of one timer per element. Targets are sorted by
+  // their scheduled time so the loop only walks forward through the list.
+  const revealTargets = [...document.querySelectorAll('.text-reveal, .text-reveal-word')]
+    .map((el) => ({ el, at: parseInt(el.dataset.delay, 10) * 70 + 200 }))
+    .sort((a, b) => a.at - b.at);
 
-  // Fire immediately since hero is visible on page load
-  textRevealChars.forEach((char) => {
-    const delay = parseInt(char.dataset.delay) * 70;
-    setTimeout(() => {
-      char.classList.add('is-revealed');
-    }, delay + 200);
-  });
+  // The accent word ("Francisco") paints its gradient per letter, because a
+  // background-clip: text ancestor breaks once a descendant is transformed.
+  // Each letter therefore needs to know how wide the whole word is and where it
+  // sits inside it, or every letter would run the full gradient on its own.
+  const accentWord = document.querySelector('.hero__title-line--accent');
+  const accentLetters = accentWord ? accentWord.querySelectorAll('.text-reveal') : [];
 
-  // Reveal whole words (used for gradient text like "Francisco")
-  textRevealWords.forEach((word) => {
-    const delay = parseInt(word.dataset.delay) * 70;
-    setTimeout(() => {
-      word.classList.add('is-revealed');
-    }, delay + 200);
-  });
+  function syncAccentGradient() {
+    if (!accentLetters.length) return;
+
+    // Measured against the line box, not the glyphs: the line is display:block,
+    // so the original gradient ran across the full container width and the text
+    // only sampled part of it. Keeping that geometry keeps the colours identical.
+    // Read every rect first, then write — never interleave the two. The reveal
+    // only moves letters vertically, so horizontal measurements stay valid even
+    // while the animation is running.
+    const lineRect = accentWord.getBoundingClientRect();
+    const rects = [...accentLetters].map((el) => el.getBoundingClientRect());
+
+    accentWord.style.setProperty('--accent-gradient-width', `${lineRect.width}px`);
+    accentLetters.forEach((el, i) => {
+      el.style.setProperty(
+        '--accent-gradient-offset',
+        `${rects[i].left - lineRect.left}px`
+      );
+    });
+  }
+
+  // The title uses a fluid clamp() font size, so the slices need remeasuring.
+  let accentFrame = 0;
+  window.addEventListener(
+    'resize',
+    () => {
+      if (!accentFrame) {
+        accentFrame = requestAnimationFrame(() => {
+          accentFrame = 0;
+          syncAccentGradient();
+        });
+      }
+    },
+    { passive: true }
+  );
+
+  function runTextReveal() {
+    syncAccentGradient();
+
+    const start = performance.now();
+    let next = 0;
+
+    function step(now) {
+      const elapsed = now - start;
+      while (next < revealTargets.length && revealTargets[next].at <= elapsed) {
+        revealTargets[next].el.classList.add('is-revealed');
+        next++;
+      }
+      if (next < revealTargets.length) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  // Wait for the webfonts so a late FOUT doesn't reflow mid-reveal, but never
+  // hold the hero back for more than 300ms.
+  if (document.fonts && document.fonts.ready) {
+    Promise.race([
+      document.fonts.ready,
+      new Promise((resolve) => setTimeout(resolve, 300)),
+    ]).then(runTextReveal);
+  } else {
+    runTextReveal();
+  }
 
   // ================================================
   // TYPEWRITER EFFECT
@@ -44,38 +103,85 @@ document.addEventListener('DOMContentLoaded', () => {
     'Sistemas em tempo real',
   ];
 
+  const TYPE_SPEED = 80;
+  const DELETE_SPEED = 40;
+  const PAUSE_AFTER_PHRASE = 2000;
+  const PAUSE_BEFORE_PHRASE = 500;
+
   let phraseIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
-  let typeSpeed = 80;
+  let nextCharAt = 0;
+  let typewriterFrame = 0;
 
-  function typeWriter() {
+  function typeWriter(now) {
+    typewriterFrame = requestAnimationFrame(typeWriter);
+    if (now < nextCharAt) return;
+
     const currentPhrase = phrases[phraseIndex];
 
     if (isDeleting) {
-      typewriterEl.textContent = currentPhrase.substring(0, charIndex - 1);
       charIndex--;
-      typeSpeed = 40;
+      typewriterEl.textContent = currentPhrase.substring(0, charIndex);
+      nextCharAt = now + DELETE_SPEED;
     } else {
-      typewriterEl.textContent = currentPhrase.substring(0, charIndex + 1);
       charIndex++;
-      typeSpeed = 80;
+      typewriterEl.textContent = currentPhrase.substring(0, charIndex);
+      nextCharAt = now + TYPE_SPEED;
     }
 
     if (!isDeleting && charIndex === currentPhrase.length) {
       isDeleting = true;
-      typeSpeed = 2000; // Pause before deleting
+      nextCharAt = now + PAUSE_AFTER_PHRASE;
     } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
       phraseIndex = (phraseIndex + 1) % phrases.length;
-      typeSpeed = 500; // Pause before typing next
+      nextCharAt = now + PAUSE_BEFORE_PHRASE;
     }
+  }
 
-    setTimeout(typeWriter, typeSpeed);
+  // The typewriter only runs while the hero is on screen and the tab is
+  // visible — otherwise it keeps laying out the hero line for nothing.
+  let typewriterUnlocked = false;
+  let heroInView = true;
+
+  function syncTypewriter() {
+    const shouldRun = typewriterUnlocked && heroInView && !document.hidden;
+
+    if (shouldRun && !typewriterFrame) {
+      nextCharAt = 0;
+      typewriterFrame = requestAnimationFrame(typeWriter);
+    } else if (!shouldRun && typewriterFrame) {
+      cancelAnimationFrame(typewriterFrame);
+      typewriterFrame = 0;
+    }
   }
 
   // Start typewriter after text reveal
-  setTimeout(typeWriter, 1500);
+  setTimeout(() => {
+    typewriterUnlocked = true;
+    syncTypewriter();
+  }, 1500);
+
+  document.addEventListener('visibilitychange', syncTypewriter);
+
+  // ================================================
+  // HERO AMBIENT ANIMATIONS (pause when off screen)
+  // ================================================
+  // Rotating photo arcs, floating badges and the badge dot are infinite CSS
+  // animations; pause them once the hero scrolls away.
+  const heroSection = document.getElementById('hero');
+
+  const heroObserver = new IntersectionObserver(
+    (entries) => {
+      heroInView = entries[0].isIntersecting;
+      heroSection.classList.toggle('hero--paused', !heroInView);
+      syncTypewriter();
+    },
+    { threshold: 0 }
+  );
+
+  heroObserver.observe(heroSection);
 
   // ================================================
   // SCROLL ANIMATIONS (stagger)
@@ -84,18 +190,23 @@ document.addEventListener('DOMContentLoaded', () => {
     '.stack__category, .project-card, .contact__card, .contact__form-wrapper'
   );
 
+  // Stagger position is fixed by the markup, so resolve it once up front
+  // instead of rebuilding the sibling list inside the observer callback.
+  const animateSet = new Set(animateElements);
+  const staggerIndex = new Map();
+
+  animateElements.forEach((el) => {
+    const siblings = Array.from(el.parentElement.children).filter((child) =>
+      animateSet.has(child)
+    );
+    staggerIndex.set(el, siblings.indexOf(el));
+  });
+
   const scrollObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Find siblings for stagger
-          const parent = entry.target.parentElement;
-          const siblings = Array.from(parent.children).filter((el) =>
-            animateElements.length ? [...animateElements].includes(el) : false
-          );
-
-          const index = siblings.indexOf(entry.target);
-          const delay = index * 100;
+          const delay = staggerIndex.get(entry.target) * 100;
 
           setTimeout(() => {
             entry.target.classList.add('is-visible');
@@ -140,13 +251,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const isTouchDevice = window.matchMedia('(hover: none)').matches;
 
   if (!isTouchDevice) {
+    // Card geometry is read once per hover, not once per mousemove. Scrolling
+    // or resizing moves the card, so mark the cached rects dirty when it happens.
+    let rectsStale = false;
+    const invalidateTiltRects = () => {
+      rectsStale = true;
+    };
+
+    window.addEventListener('scroll', invalidateTiltRects, { passive: true });
+    window.addEventListener('resize', invalidateTiltRects, { passive: true });
+
     tiltCards.forEach((card) => {
       const glare = card.querySelector('.project-card__glare');
 
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+      let rect = null;
+      let frame = 0;
+      let pointerX = 0;
+      let pointerY = 0;
+
+      function render() {
+        frame = 0;
+
+        if (!rect || rectsStale) {
+          rect = card.getBoundingClientRect();
+          rectsStale = false;
+        }
+
+        const x = pointerX - rect.left;
+        const y = pointerY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
@@ -157,23 +289,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update glare position
         if (glare) {
-          const glareX = (x / rect.width) * 100;
-          const glareY = (y / rect.height) * 100;
-          glare.style.setProperty('--glare-x', `${glareX}%`);
-          glare.style.setProperty('--glare-y', `${glareY}%`);
+          glare.style.setProperty('--glare-x', `${(x / rect.width) * 100}%`);
+          glare.style.setProperty('--glare-y', `${(y / rect.height) * 100}%`);
         }
+      }
+
+      card.addEventListener('mouseenter', () => {
+        rect = card.getBoundingClientRect();
+        card.classList.add('project-card--tilting');
+      });
+
+      card.addEventListener('mousemove', (e) => {
+        pointerX = e.clientX;
+        pointerY = e.clientY;
+        // Coalesce to one write per frame; mousemove can fire far more often.
+        if (!frame) frame = requestAnimationFrame(render);
       });
 
       card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-        card.style.transition = 'transform 0.5s ease-out';
-        setTimeout(() => {
-          card.style.transition = 'transform 0.1s linear';
-        }, 500);
-      });
-
-      card.addEventListener('mouseenter', () => {
-        card.style.transition = 'transform 0.1s linear';
+        if (frame) {
+          cancelAnimationFrame(frame);
+          frame = 0;
+        }
+        rect = null;
+        // Dropping the class re-enables the CSS ease-out back to rest.
+        card.classList.remove('project-card--tilting');
+        card.style.transform = '';
       });
     });
   }
@@ -194,30 +335,54 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Active dock item based on scroll
+  // ================================================
+  // FLOATING DOCK - VISIBILITY + ACTIVE STATE
+  // ================================================
+  const dock = document.querySelector('.dock');
   const sections = document.querySelectorAll('section[id]');
   const dockItems = document.querySelectorAll('.dock__item[href^="#"]');
 
-  const activateObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          dockItems.forEach((item) => {
-            item.classList.remove('dock__item--active');
-            if (item.getAttribute('href') === `#${id}`) {
-              item.classList.add('dock__item--active');
-            }
-          });
-        }
-      });
-    },
-    { threshold: 0.3, rootMargin: '-10% 0px -60% 0px' }
-  );
+  let dockFrame = 0;
+  let activeHref = null;
 
-  sections.forEach((section) => {
-    activateObserver.observe(section);
-  });
+  function updateDock() {
+    dockFrame = 0;
+
+    dock.classList.toggle('dock--at-top', window.scrollY < 100);
+
+    // The active section is the one crossing a reference line at 35% of the
+    // viewport. Using a line instead of an intersection ratio means full-height
+    // sections like the hero can't fall below the threshold and lose the state.
+    const line = window.innerHeight * 0.35;
+    let currentHref = null;
+
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= line && rect.bottom > line) {
+        currentHref = `#${section.getAttribute('id')}`;
+      }
+    });
+
+    if (currentHref && currentHref !== activeHref) {
+      activeHref = currentHref;
+      dockItems.forEach((item) => {
+        item.classList.toggle(
+          'dock__item--active',
+          item.getAttribute('href') === activeHref
+        );
+      });
+    }
+  }
+
+  function requestDockUpdate() {
+    if (!dockFrame) dockFrame = requestAnimationFrame(updateDock);
+  }
+
+  window.addEventListener('scroll', requestDockUpdate, { passive: true });
+  window.addEventListener('resize', requestDockUpdate, { passive: true });
+
+  // Initial state
+  updateDock();
 
   // ================================================
   // CONTACT FORM (EmailJS)
@@ -226,10 +391,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const notification = document.getElementById('form-notification');
   const submitBtn = form.querySelector('button[type="submit"]');
 
+  let notificationTimer = 0;
+
   function showNotification(message, type) {
+    // Reset the pending timer, otherwise an older one clears a newer message.
+    clearTimeout(notificationTimer);
+
     notification.textContent = message;
     notification.className = `form-notification form-notification--${type}`;
-    setTimeout(() => {
+
+    notificationTimer = setTimeout(() => {
       notification.textContent = '';
       notification.className = 'form-notification';
     }, 5000);
@@ -276,29 +447,4 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Mensagem';
       });
   });
-
-  // ================================================
-  // DOCK VISIBILITY (hide when at very top, show otherwise)
-  // ================================================
-  const dock = document.querySelector('.dock');
-  let lastScroll = 0;
-
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-    if (currentScroll < 100) {
-      dock.style.opacity = '0.5';
-      dock.style.transform = 'translateX(-50%) translateY(10px)';
-    } else {
-      dock.style.opacity = '1';
-      dock.style.transform = 'translateX(-50%) translateY(0)';
-    }
-    lastScroll = currentScroll;
-  });
-
-  // Initial state
-  dock.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-  if (window.scrollY < 100) {
-    dock.style.opacity = '0.5';
-    dock.style.transform = 'translateX(-50%) translateY(10px)';
-  }
 }); // End DOMContentLoaded

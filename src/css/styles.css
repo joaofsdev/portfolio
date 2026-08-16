@@ -122,8 +122,13 @@ button {
 .bg-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
   opacity: 0.3;
+  /* These orbs animate forever underneath every backdrop-filter on the page,
+     so each frame costs a full re-blur of the glass layers above them. The
+     gradients below already fade out to transparent, so a filter: blur() on
+     top adds a very expensive pass for almost no visual difference.
+     will-change keeps each orb on its own compositor layer. */
+  will-change: transform;
 }
 
 .bg-orb--1 {
@@ -213,7 +218,8 @@ button {
   border-radius: 0.75rem;
   font-weight: 500;
   font-size: 0.9rem;
-  transition: all 0.3s var(--ease-out);
+  transition: background-color 0.3s var(--ease-out), transform 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
   position: relative;
   overflow: hidden;
 }
@@ -246,24 +252,28 @@ button {
 }
 
 /* === SCROLL ANIMATIONS === */
-.animate-on-scroll {
+/* Scoped to .js (set by an inline script in <head>) so the starting opacity: 0
+   applies from the very first paint instead of after main.js runs — otherwise
+   the content flashes in, snaps to hidden, then fades back in. The scope also
+   means the content stays visible when JavaScript is unavailable. */
+.js .animate-on-scroll {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
 }
 
-.animate-on-scroll.is-visible {
+.js .animate-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.stagger-child {
+.js .stagger-child {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
 }
 
-.stagger-child.is-visible {
+.js .stagger-child.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -290,12 +300,15 @@ button {
     animation: none !important;
   }
 
-  .animate-on-scroll {
+  /* Must match the .js scope above, otherwise these lose on specificity. */
+  .js .animate-on-scroll,
+  .js .animate-on-scroll.is-visible {
     opacity: 1;
     transform: none;
   }
 
-  .stagger-child {
+  .js .stagger-child,
+  .js .stagger-child.is-visible {
     opacity: 1;
     transform: none;
   }
@@ -366,8 +379,23 @@ button {
   display: block;
 }
 
-.hero__title-line--accent {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 50%, #fbbf24 100%);
+/* The accent gradient lives on each letter instead of on the line. A
+   background-clip: text ancestor stops painting its descendants correctly as
+   soon as one of them is transformed, and the per-letter reveal transforms all
+   of them — which is why this word used to reveal as a single block.
+   JS feeds --accent-gradient-width and --accent-gradient-offset (see
+   syncAccentGradient in main.js) so the per-letter slices still line up into
+   the single continuous gradient the line used to paint by itself. */
+.hero__title-line--accent .text-reveal {
+  background-image: linear-gradient(
+    135deg,
+    var(--accent) 0%,
+    var(--accent-light) 50%,
+    #fbbf24 100%
+  );
+  background-size: var(--accent-gradient-width, 100%) 100%;
+  background-position: calc(-1 * var(--accent-gradient-offset, 0px)) 0;
+  background-repeat: no-repeat;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -477,6 +505,15 @@ button {
   position: absolute;
   inset: -50%;
   animation: rotateGlow 4s linear infinite;
+  will-change: transform;
+}
+
+/* Infinite hero animations are paused by JS once the hero leaves the viewport. */
+.hero--paused .hero__photo-glow::before,
+.hero--paused .hero__photo-glow::after,
+.hero--paused .floating-badge,
+.hero--paused .hero__badge-dot {
+  animation-play-state: paused;
 }
 
 .hero__photo-glow::before {
@@ -528,15 +565,17 @@ button {
   align-items: center;
   gap: 0.4rem;
   padding: 0.4rem 0.8rem;
-  background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: 0.6rem;
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--text-secondary);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   white-space: nowrap;
+  /* No backdrop-filter here on purpose: these four badges animate forever, and
+     a blurred backdrop on a moving element forces a re-blur every frame. The
+     slightly more opaque background stands in for the frosted look. */
+  background: rgba(28, 28, 40, 0.72);
+  will-change: transform;
 }
 
 .floating-badge--1 {
@@ -620,7 +659,9 @@ button {
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--text-secondary);
-  transition: all 0.3s var(--ease-out);
+  transition: color 0.3s var(--ease-out), background-color 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
   cursor: default;
 }
 
@@ -650,9 +691,25 @@ button {
   position: relative;
   border-radius: 1.25rem;
   overflow: hidden;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  transition: transform 0.1s linear;
+  /* No transform-style/perspective here: overflow: hidden flattens the 3D
+     context anyway, and the perspective that actually applies is the
+     perspective() function JS writes into the transform. */
+}
+
+/* Ease back to rest on mouseleave. The second selector re-states it at a higher
+   specificity than `.js .animate-on-scroll`, whose 0.8s reveal transition also
+   lands on this element and would otherwise slow the return down. */
+.project-card,
+.js .project-card.animate-on-scroll.is-visible {
+  transition: transform 0.5s var(--ease-out);
+}
+
+/* While the cursor drives the tilt, JS rewrites transform every frame. Any
+   transition on top of that interpolates each step and the card visibly lags
+   behind the pointer. !important because this has to beat both rules above
+   regardless of source order. */
+.project-card--tilting {
+  transition: none !important;
   will-change: transform;
 }
 
@@ -746,7 +803,8 @@ button {
   border-radius: 0.5rem;
   border: 1px solid var(--border);
   color: var(--text-muted);
-  transition: all 0.3s var(--ease-out);
+  transition: color 0.3s var(--ease-out), background-color 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
 }
 
 .project-card__link:hover {
@@ -827,7 +885,8 @@ button {
   align-items: center;
   gap: 1rem;
   padding: 1rem 1.25rem;
-  transition: all 0.3s var(--ease-out);
+  transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out),
+    transform 0.3s var(--ease-out);
 }
 
 .contact__card:hover {
@@ -889,7 +948,7 @@ button {
   color: var(--text-primary);
   font-family: var(--font-sans);
   font-size: 0.85rem;
-  transition: all 0.3s var(--ease-out);
+  transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
 }
 
 .form-group input::placeholder,
@@ -914,7 +973,9 @@ button {
   padding: 0;
   border-radius: 0.5rem;
   font-size: 0.85rem;
-  transition: all 0.3s var(--ease-out);
+  /* padding is deliberately left out: transitioning it animates layout. */
+  transition: background-color 0.3s var(--ease-out), border-color 0.3s var(--ease-out),
+    color 0.3s var(--ease-out);
 }
 
 .form-notification--success {
@@ -959,6 +1020,14 @@ button {
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+
+/* Toggled by JS instead of writing inline styles on every scroll event. */
+.dock--at-top {
+  opacity: 0.5;
+  transform: translateX(-50%) translateY(10px);
 }
 
 .dock__container {
@@ -978,7 +1047,8 @@ button {
   border-radius: 0.75rem;
   color: var(--text-secondary);
   font-size: 1.1rem;
-  transition: all 0.3s var(--ease-spring);
+  transition: color 0.3s var(--ease-spring), background-color 0.3s var(--ease-spring),
+    transform 0.3s var(--ease-spring);
   position: relative;
 }
 
@@ -996,7 +1066,7 @@ button {
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: all 0.2s var(--ease-out);
+  transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out);
 }
 
 .dock__item:hover::before {
@@ -1008,12 +1078,6 @@ button {
   color: var(--accent);
   background: var(--accent-subtle);
   transform: scale(1.3) translateY(-4px);
-}
-
-/* Adjacent sibling scale effect (magnification) */
-.dock__item:hover + .dock__item,
-.dock__item:has(+ .dock__item:hover) {
-  transform: scale(1.12) translateY(-2px);
 }
 
 .dock__separator {
@@ -1145,11 +1209,6 @@ button {
   }
 
   .dock__item:hover {
-    transform: none;
-  }
-
-  .dock__item:hover + .dock__item,
-  .dock__item:has(+ .dock__item:hover) {
     transform: none;
   }
 }

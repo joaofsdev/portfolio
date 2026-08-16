@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Marks that JS is available, before the first paint. Scroll-animated
+         elements only start hidden under `.js`, so the page never flashes them
+         in and back out, and stays readable if this script never runs. -->
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
     <title>João Francisco da Silva — Engenheiro de Software Backend</title>
     <meta
       name="description"
@@ -65,11 +71,17 @@
               ><span class="text-reveal" data-delay="2">ã</span
               ><span class="text-reveal" data-delay="3">o</span>
             </span>
-            <span
-              class="hero__title-line hero__title-line--accent text-reveal-word"
-              data-delay="5"
-              >Francisco</span
-            >
+            <span class="hero__title-line hero__title-line--accent">
+              <span class="text-reveal" data-delay="5">F</span
+              ><span class="text-reveal" data-delay="6">r</span
+              ><span class="text-reveal" data-delay="7">a</span
+              ><span class="text-reveal" data-delay="8">n</span
+              ><span class="text-reveal" data-delay="9">c</span
+              ><span class="text-reveal" data-delay="10">i</span
+              ><span class="text-reveal" data-delay="11">s</span
+              ><span class="text-reveal" data-delay="12">c</span
+              ><span class="text-reveal" data-delay="13">o</span>
+            </span>
           </h1>
 
           <div class="hero__typewriter">
@@ -129,14 +141,14 @@
     <!-- ===== STACK SECTION ===== -->
     <section id="stack" class="section stack">
       <div class="section__container">
-        <h2 class="section__title">Stack Tecnológico</h2>
-        <p class="section__subtitle">
+        <h2 class="section__title animate-on-scroll">Stack Tecnológico</h2>
+        <p class="section__subtitle animate-on-scroll">
           Tecnologias que uso para construir soluções robustas e escaláveis
         </p>
 
         <div class="stack__grid">
           <!-- Backend -->
-          <div class="stack__category glass-card">
+          <div class="stack__category glass-card animate-on-scroll">
             <div class="stack__category-header">
               <i class="fas fa-server"></i>
               <h3>Backend</h3>
@@ -173,7 +185,7 @@
           </div>
 
           <!-- Frontend -->
-          <div class="stack__category glass-card">
+          <div class="stack__category glass-card animate-on-scroll">
             <div class="stack__category-header">
               <i class="fas fa-palette"></i>
               <h3>Frontend</h3>
@@ -204,7 +216,7 @@
           </div>
 
           <!-- DevOps & Tools -->
-          <div class="stack__category glass-card">
+          <div class="stack__category glass-card animate-on-scroll">
             <div class="stack__category-header">
               <i class="fas fa-tools"></i>
               <h3>DevOps & Ferramentas</h3>
@@ -243,15 +255,15 @@
     <!-- ===== PROJECTS SECTION ===== -->
     <section id="projetos" class="section projects">
       <div class="section__container">
-        <h2 class="section__title">Projetos em Destaque</h2>
-        <p class="section__subtitle">
+        <h2 class="section__title animate-on-scroll">Projetos em Destaque</h2>
+        <p class="section__subtitle animate-on-scroll">
           Sistemas completos desenvolvidos com foco em qualidade e
           escalabilidade
         </p>
 
         <div class="projects__grid">
           <!-- Batalha Naval -->
-          <article class="project-card" data-tilt>
+          <article class="project-card animate-on-scroll" data-tilt>
             <div class="project-card__glare"></div>
             <div class="project-card__border"></div>
             <div class="project-card__content">
@@ -309,7 +321,7 @@
           </article>
 
           <!-- Trainly -->
-          <article class="project-card" data-tilt>
+          <article class="project-card animate-on-scroll" data-tilt>
             <div class="project-card__glare"></div>
             <div class="project-card__border"></div>
             <div class="project-card__content">
@@ -372,8 +384,8 @@
     <!-- ===== CONTACT SECTION ===== -->
     <section id="contato" class="section contact">
       <div class="section__container">
-        <h2 class="section__title">Vamos Conversar?</h2>
-        <p class="section__subtitle">
+        <h2 class="section__title animate-on-scroll">Vamos Conversar?</h2>
+        <p class="section__subtitle animate-on-scroll">
           Estou aberto para discutir novos projetos, ideias criativas ou
           oportunidades de colaboração.
         </p>
@@ -383,7 +395,7 @@
           <div class="contact__links">
             <a
               href="mailto:joao.franciscos047@gmail.com"
-              class="contact__card glass-card"
+              class="contact__card glass-card animate-on-scroll"
             >
               <div class="contact__card-icon">
                 <i class="fas fa-envelope"></i>
@@ -398,7 +410,7 @@
               href="https://www.linkedin.com/in/joaofsdev/"
               target="_blank"
               rel="noopener noreferrer"
-              class="contact__card glass-card"
+              class="contact__card glass-card animate-on-scroll"
             >
               <div class="contact__card-icon">
                 <i class="fab fa-linkedin"></i>
@@ -413,7 +425,7 @@
               href="https://github.com/joaofsdev"
               target="_blank"
               rel="noopener noreferrer"
-              class="contact__card glass-card"
+              class="contact__card glass-card animate-on-scroll"
             >
               <div class="contact__card-icon">
                 <i class="fab fa-github"></i>
@@ -428,7 +440,7 @@
               href="https://wa.me/+5547988162658"
               target="_blank"
               rel="noopener noreferrer"
-              class="contact__card glass-card"
+              class="contact__card glass-card animate-on-scroll"
             >
               <div class="contact__card-icon">
                 <i class="fab fa-whatsapp"></i>
@@ -441,7 +453,7 @@
           </div>
 
           <!-- Form -->
-          <div class="contact__form-wrapper glass-card">
+          <div class="contact__form-wrapper glass-card animate-on-scroll">
             <form id="contactForm" class="contact__form">
               <div class="form-group">
                 <label for="name">Nome</label>
